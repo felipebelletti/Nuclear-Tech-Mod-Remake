@@ -159,6 +159,9 @@ repositories {
         name = "ModMaven"
         url = "https://modmaven.k-4u.nl"
     }
+    maven {
+        url "https://cursemaven.com"
+    }
     maven { url 'https://modmaven.dev/' }
     maven { url "https://maven.shedaniel.me" }
     mavenCentral()
@@ -188,19 +191,19 @@ dependencies {
     compileOnly fg.deobf("me.shedaniel:RoughlyEnoughItems-api-forge:$rei_version")
     compileOnly fg.deobf("me.shedaniel:RoughlyEnoughItems-default-plugin-forge:$rei_version")
 
-    if (devModeREI) {
-        implementation fg.deobf("me.shedaniel:RoughlyEnoughItems-forge:$rei_version")
-        implementation fg.deobf("me.shedaniel.cloth:cloth-config-forge:$cloth_config_version")
-        implementation fg.deobf("dev.architectury:architectury-forge:$architectury_version")
-    } else {
-        runtimeOnly fg.deobf("mezz.jei:jei-$minecraft_version:$jei_version")
-    }
+//    if (devModeREI) {
+//        implementation fg.deobf("me.shedaniel:RoughlyEnoughItems-forge:$rei_version")
+//        implementation fg.deobf("me.shedaniel.cloth:cloth-config-forge:$cloth_config_version")
+//        implementation fg.deobf("dev.architectury:architectury-forge:$architectury_version")
+//    } else {
+//        runtimeOnly fg.deobf("mezz.jei:jei-$minecraft_version:$jei_version")
+//    }
 
     // for testing compatibility
-    runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}")
-    runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}:additions")
-    runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}:generators")
-    runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}:tools")
+//    runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}")
+//    runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}:additions")
+//    runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}:generators")
+//    runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}:tools")
 
     datagenCompileOnly sourceSets.main.output
 }
