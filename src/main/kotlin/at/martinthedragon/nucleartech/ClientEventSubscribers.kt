@@ -15,7 +15,7 @@ import net.minecraftforge.client.event.RecipesUpdatedEvent
 import net.minecraftforge.client.event.RenderPlayerEvent
 import net.minecraftforge.client.event.RenderTooltipEvent
 import net.minecraftforge.event.TagsUpdatedEvent
-import net.minecraftforge.event.entity.EntityJoinLevelEvent
+import net.minecraftforge.event.entity.EntityJoinWorldEvent
 import net.minecraftforge.event.entity.player.ItemTooltipEvent
 import net.minecraftforge.eventbus.api.SubscribeEvent
 import net.minecraftforge.fml.VersionChecker
@@ -26,9 +26,7 @@ import net.minecraftforge.fml.common.Mod
 object ClientEventSubscribers {
     @SubscribeEvent @JvmStatic
     fun onItemTooltip(event: ItemTooltipEvent) {
-        event.entity.let { player ->
-            HazardSystem.addHoverText(event.itemStack, player, event.toolTip, event.flags)
-        }
+        HazardSystem.addHoverText(event.itemStack, event.player, event.toolTip, event.flags)
     }
 
     @SubscribeEvent @JvmStatic
@@ -49,9 +47,7 @@ object ClientEventSubscribers {
 
     @SubscribeEvent @JvmStatic
     fun onRenderPlayer(event: RenderPlayerEvent.Pre) {
-        event.entity?.let { player ->
-            NTechCapes.renderCape(player, event.renderer)
-        }
+        NTechCapes.renderCape(event.player, event.renderer)
     }
 
     @SubscribeEvent @JvmStatic
@@ -62,7 +58,7 @@ object ClientEventSubscribers {
     private var didVersionCheck = false
 
     @SubscribeEvent @JvmStatic
-    fun clientVersionCheckChatMessage(event: EntityJoinLevelEvent) {
+    fun clientVersionCheckChatMessage(event: EntityJoinWorldEvent) {
         val entity: Entity = event.entity
         if (!didVersionCheck && entity === Minecraft.getInstance().player) {
             val message = createVersionUpdateChatMessage()
@@ -82,18 +78,18 @@ object ClientEventSubscribers {
             VersionChecker.Status.PENDING, VersionChecker.Status.FAILED, VersionChecker.Status.UP_TO_DATE, null -> null
             VersionChecker.Status.BETA, VersionChecker.Status.AHEAD -> {
                 val cuttingEdgeMessage = if (NuclearTech.isSnapshot) LangKeys.VERSION_CHECKER_BLEEDING_EDGE.red() else LangKeys.VERSION_CHECKER_CUTTING_EDGE.gold()
-                cuttingEdgeMessage.append(Component.literal(" ($currentVersion)").withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFFFFFF))))
+                cuttingEdgeMessage.append(TextComponent(" ($currentVersion)").white())
             }
             VersionChecker.Status.OUTDATED, VersionChecker.Status.BETA_OUTDATED -> {
                 LangKeys.VERSION_CHECKER_UPDATE.yellow()
-                    .append(Component.literal(" ($currentVersion -> ").withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFFFFFF))))
-                    .append(Component.literal("${versionCheckResult.target}").withStyle(Style.EMPTY
+                    .append(TextComponent(" ($currentVersion -> ").white())
+                    .append(TextComponent("${versionCheckResult.target}").blue().underline().withStyle(Style.EMPTY
                         .withHoverEvent(HoverEvent(HoverEvent.Action.SHOW_TEXT, LangKeys.VERSION_CHECKER_VIEW_RELEASES.gray()))
                         .withClickEvent(ClickEvent(ClickEvent.Action.OPEN_URL, versionCheckResult.url))))
-                    .append(Component.literal(")").withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFFFFFF))))
+                    .append(TextComponent(")").white())
                     .append("\n")
                     .run { if (versionCheckResult.changes.isNotEmpty()) append(LangKeys.VERSION_CHECKER_CHANGES_LIST.yellow()) else this }
-                    .run { var next = this; for (change in versionCheckResult.changes.values.flatMap { it.split("\r\n", "\n", "\r") }) next = next.append(Component.literal('\n' + change.prependIndent()).withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFFFFFF)))); next }
+                    .run { var next = this; for (change in versionCheckResult.changes.values.flatMap { it.split("\r\n", "\n", "\r") }) next = next.append(TextComponent('\n' + change.prependIndent()).white()); next }
             }
         }
     }

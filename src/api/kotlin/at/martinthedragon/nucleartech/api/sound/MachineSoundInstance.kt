@@ -6,16 +6,10 @@ import net.minecraft.core.BlockPos
 import net.minecraft.sounds.SoundEvent
 import net.minecraft.sounds.SoundSource
 import net.minecraftforge.client.ForgeHooksClient
-import net.minecraft.util.RandomSource
+import kotlin.random.Random
 
-public class MachineSoundInstance(
-    sound: SoundEvent,
-    source: SoundSource,
-    pos: BlockPos,
-    loop: Boolean,
-    volume: Float = 1F,
-    pitch: Float = 1F
-) : AbstractTickableSoundInstance(sound, source, (Minecraft.getInstance().player?.position() ?: BlockPos.ZERO) as RandomSource) {
+// somewhat a reconstruction of mekanism's implementation. it's just so good :p
+public class MachineSoundInstance(sound: SoundEvent, source: SoundSource, pos: BlockPos, loop: Boolean, volume: Float = 1F, pitch: Float = 1F) : AbstractTickableSoundInstance(sound, source) {
     init {
         x = pos.x + .5
         y = pos.y + .5
@@ -26,7 +20,7 @@ public class MachineSoundInstance(
         this.pitch = pitch
     }
 
-    private var interval = 20 + RandomSource.create().nextInt(20)
+    private var interval = 20 + Random.nextInt(20)
 
     override fun tick() {
         val level = Minecraft.getInstance().level ?: return

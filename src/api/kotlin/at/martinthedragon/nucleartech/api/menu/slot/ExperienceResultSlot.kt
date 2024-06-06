@@ -14,7 +14,7 @@ public open class ExperienceResultSlot(
 ) : ResultSlot(player, inventory, index, xPosition, yPosition) {
     override fun checkTakeAchievements(stack: ItemStack) {
         super.checkTakeAchievements(stack)
-        if (!player.level().isClientSide)
+        if (!player.level.isClientSide)
             tileEntity.dropExperienceAndAwardRecipes(player)
     }
 }

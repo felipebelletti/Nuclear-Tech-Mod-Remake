@@ -8,6 +8,6 @@ import net.minecraftforge.event.entity.player.PlayerFlyableFallEvent
 public interface FallHandler {
     public fun handleFall(entity: LivingEntity, distance: Float, multiplier: Float, stack: ItemStack)
 
-    public fun handleFall(event: PlayerFlyableFallEvent, stack: ItemStack): Unit = handleFall(event.entity as LivingEntity, event.distance, event.multiplier, stack)
-    public fun handleFall(event: LivingFallEvent, stack: ItemStack): Unit = handleFall(event.entity as LivingEntity, event.distance, event.damageMultiplier, stack)
+    public fun handleFall(event: PlayerFlyableFallEvent, stack: ItemStack): Unit = handleFall(event.entityLiving, event.distance, event.multiplier, stack)
+    public fun handleFall(event: LivingFallEvent, stack: ItemStack): Unit = handleFall(event.entityLiving, event.distance, event.damageMultiplier, stack)
 }

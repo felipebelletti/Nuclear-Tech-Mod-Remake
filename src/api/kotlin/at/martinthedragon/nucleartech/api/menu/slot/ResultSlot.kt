@@ -34,7 +34,7 @@ public open class ResultSlot(protected val player: Player, inventory: IItemHandl
 
     override fun checkTakeAchievements(stack: ItemStack) {
         if (removeCount > 0) {
-            stack.onCraftedBy(player.level(), player, removeCount)
+            stack.onCraftedBy(player.level, player, removeCount)
         }
         removeCount = 0
     }
