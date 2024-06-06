@@ -34,3 +34,5 @@ mcmodsrepo/
 !gradle/wrapper/gradle-wrapper.jar
 
 local.properties
+
+src/datagen/generated/resources/.cache/cache
