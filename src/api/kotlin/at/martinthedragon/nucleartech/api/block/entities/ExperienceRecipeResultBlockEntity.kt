@@ -11,7 +11,7 @@ public interface ExperienceRecipeResultBlockEntity {
 
     public fun dropExperienceAndAwardRecipes(player: Player) {
         player.awardRecipes(getRecipesToAward(player))
-        player.level.dropExperience(player.position(), getExperienceToDrop(player))
+        player.level().dropExperience(player.position(), getExperienceToDrop(player))
         clearUsedRecipes()
     }
 }

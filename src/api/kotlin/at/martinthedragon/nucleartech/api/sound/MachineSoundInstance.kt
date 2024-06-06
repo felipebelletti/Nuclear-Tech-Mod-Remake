@@ -7,9 +7,11 @@ import net.minecraft.sounds.SoundEvent
 import net.minecraft.sounds.SoundSource
 import net.minecraftforge.client.ForgeHooksClient
 import kotlin.random.Random
+import net.minecraft.client.resources.sounds.SoundInstance
+
 
 // somewhat a reconstruction of mekanism's implementation. it's just so good :p
-public class MachineSoundInstance(sound: SoundEvent, source: SoundSource, pos: BlockPos, loop: Boolean, volume: Float = 1F, pitch: Float = 1F) : AbstractTickableSoundInstance(sound, source) {
+public class MachineSoundInstance(sound: SoundEvent, source: SoundSource, pos: BlockPos, loop: Boolean, volume: Float = 1F, pitch: Float = 1F) : AbstractTickableSoundInstance(sound, source, SoundInstance.createUnseededRandom()) {
     init {
         x = pos.x + .5
         y = pos.y + .5

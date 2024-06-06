@@ -9,9 +9,8 @@ import net.minecraft.world.item.TooltipFlag
 import net.minecraft.world.level.BlockGetter
 import net.minecraft.world.level.Level
 import net.minecraftforge.fluids.FluidStack
-import net.minecraftforge.registries.IForgeRegistryEntry
 
-public interface FluidTrait : IForgeRegistryEntry<FluidTrait> {
+public interface FluidTrait {
     public val descriptionId: String
     public fun getName(data: AttachedFluidTrait<*>): MutableComponent
 
