@@ -21,6 +21,7 @@ apply plugin: 'kotlin'
 // apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply from: '.scripts/properties-reader.gradle'
+apply from: 'https://raw.githubusercontent.com/SizableShrimp/ForgeUpdatesRemapper/main/remapper.gradle'
 
 if (project.hasProperty("release")) project.ext.mod_version = "$mod_version_major.$mod_version_api.$mod_version_minor.$mod_version_patch" as GStringImpl
 else project.ext.mod_version = "$mod_version_major.$mod_version_api.$mod_version_minor.${mod_version_patch.toInteger() + 1}-snapshot${new Date().format("yyyyMMdd'T'HHmmss")}" as GStringImpl // snapshots are always one patch higher than the current release
