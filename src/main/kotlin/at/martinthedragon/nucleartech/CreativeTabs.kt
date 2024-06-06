@@ -21,5 +21,5 @@ enum class CreativeTabs(val tab: CreativeModeTab) {
 }
 
 private fun createTab(name: String, iconItem: Supplier<out RegistryObject<out Item>>) = object : CreativeModeTab("${NuclearTech.MODID}_$name") {
-    override fun makeIcon() = ItemStack(iconItem.get().get()) // do not cache, because Forge plans on making registries reloadable
+    fun makeIcon() = ItemStack(iconItem.get().get()) // do not cache, because Forge plans on making registries reloadable
 }

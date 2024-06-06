@@ -17,13 +17,13 @@ A recreation by MartinTheDragon of HbMinecraft's Nuclear Tech Mod.
 [[dependencies.nucleartech]]
   modId="forge"
   mandatory=true
-  versionRange="[40.1.59,)"
+  versionRange="[40.1.59,47.3.0)"
   ordering="NONE"
   side="BOTH"
 [[dependencies.nucleartech]]
   modId="minecraft"
   mandatory=true
-  versionRange="[1.18.2,1.19)"
+  versionRange="[1.18.2,1.19,1.20.1)"
   ordering="NONE"
   side="BOTH"
 [[dependencies.nucleartech]]
