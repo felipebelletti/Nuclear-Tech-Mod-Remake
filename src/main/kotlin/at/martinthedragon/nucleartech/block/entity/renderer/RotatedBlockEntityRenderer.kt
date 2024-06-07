@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider
 import net.minecraft.world.level.block.HorizontalDirectionalBlock
 import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraftforge.client.model.renderable.MultipartTransforms
-import net.minecraftforge.client.model.renderable.SimpleRenderable
+import net.minecraftforge.client.model.renderable.CompositeRenderable
 
 abstract class RotatedBlockEntityRenderer<T : BlockEntity>(context: BlockEntityRendererProvider.Context) : GenericBlockEntityRenderer<T>(context) {
     override fun render(blockEntity: T, partials: Float, matrix: PoseStack, buffers: MultiBufferSource, light: Int, overlay: Int) {
@@ -21,7 +21,7 @@ abstract class RotatedBlockEntityRenderer<T : BlockEntity>(context: BlockEntityR
         matrix.popPose()
     }
 
-    protected open fun renderRotated(blockEntity: T, model: SimpleRenderable, partials: Float, matrix: PoseStack, buffers: MultiBufferSource, light: Int, overlay: Int) {
+    protected open fun renderRotated(blockEntity: T, model: CompositeRenderable, partials: Float, matrix: PoseStack, buffers: MultiBufferSource, light: Int, overlay: Int) {
         model.render(matrix, buffers, renderType, light, overlay, partials, MultipartTransforms.EMPTY)
     }
 }

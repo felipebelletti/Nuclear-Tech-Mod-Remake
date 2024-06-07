@@ -15,13 +15,13 @@ import net.minecraftforge.client.model.SimpleModelState
 import net.minecraftforge.client.model.StandaloneModelConfiguration
 import net.minecraftforge.client.model.obj.OBJLoader
 import net.minecraftforge.client.model.obj.OBJModel
-import net.minecraftforge.client.model.renderable.SimpleRenderable
+import net.minecraftforge.client.model.renderable.CompositeRenderable
 import net.minecraftforge.client.textures.UnitSprite
 import java.util.function.Supplier
 
 @Suppress("unused")
 object SpecialModels : ResourceManagerReloadListener {
-    private val modelFunctions = mutableMapOf<ResourceLocation, (ResourceLocation) -> SimpleRenderable>()
+    private val modelFunctions = mutableMapOf<ResourceLocation, (ResourceLocation) -> CompositeRenderable>()
     private val bakedModelFunctions = mutableMapOf<ResourceLocation, (ResourceLocation) -> BakedModel>()
 
     val ASSEMBLER_ARM = registerModel(modelLoc("assembler/arm"), simpleModel())
@@ -62,26 +62,26 @@ object SpecialModels : ResourceManagerReloadListener {
 
     private fun modelLoc(path: String) = ntm("models/other/$path.obj")
 
-    private fun simpleModel(detectCullableFaces: Boolean = false, diffuseLighting: Boolean = false, flipV: Boolean = true, ambientToFullbright: Boolean = true, materialLibraryOverrideLocation: String? = null): (ResourceLocation) -> SimpleRenderable =
+    private fun simpleModel(detectCullableFaces: Boolean = false, diffuseLighting: Boolean = false, flipV: Boolean = true, ambientToFullbright: Boolean = true, materialLibraryOverrideLocation: String? = null): (ResourceLocation) -> CompositeRenderable =
         { id -> OBJLoader.INSTANCE.loadModel(OBJModel.ModelSettings(id, detectCullableFaces, diffuseLighting, flipV, ambientToFullbright, materialLibraryOverrideLocation)).bakeRenderable(StandaloneModelConfiguration.create(id, mapOf("#texture" to ResourceLocation(id.namespace, id.path.removeSuffix(".obj").removePrefix("models/"))))) }
 
-    private fun simpleModel(textureLocation: ResourceLocation, detectCullableFaces: Boolean = false, diffuseLighting: Boolean = false, flipV: Boolean = true, ambientToFullbright: Boolean = true, materialLibraryOverrideLocation: String? = null): (ResourceLocation) -> SimpleRenderable =
+    private fun simpleModel(textureLocation: ResourceLocation, detectCullableFaces: Boolean = false, diffuseLighting: Boolean = false, flipV: Boolean = true, ambientToFullbright: Boolean = true, materialLibraryOverrideLocation: String? = null): (ResourceLocation) -> CompositeRenderable =
         { id -> OBJLoader.INSTANCE.loadModel(OBJModel.ModelSettings(id, detectCullableFaces, diffuseLighting, flipV, ambientToFullbright, materialLibraryOverrideLocation)).bakeRenderable(StandaloneModelConfiguration.create(id, mapOf("#texture" to textureLocation))) }
 
     private fun bakedModel(detectCullableFaces: Boolean = false, diffuseLighting: Boolean = false, flipV: Boolean = true, ambientToFullbright: Boolean = true, materialLibraryOverrideLocation: String? = null): (ResourceLocation) -> BakedModel =
         { id -> OBJLoader.INSTANCE.loadModel(OBJModel.ModelSettings(id, detectCullableFaces, diffuseLighting, flipV, ambientToFullbright, materialLibraryOverrideLocation)).bake(StandaloneModelConfiguration.INSTANCE, ForgeModelBakery.instance(), UnitSprite.GETTER, SimpleModelState.IDENTITY, ItemOverrides.EMPTY, id) }
 
-    private val modelCache = mutableMapOf<ResourceLocation, SimpleRenderable>()
+    private val modelCache = mutableMapOf<ResourceLocation, CompositeRenderable>()
     private val bakedModelCache = mutableMapOf<ResourceLocation, BakedModel>()
 
-    fun registerModel(id: ResourceLocation, modelFunction: (ResourceLocation) -> SimpleRenderable): SimpleModelReference {
+    fun registerModel(id: ResourceLocation, modelFunction: (ResourceLocation) -> CompositeRenderable): SimpleModelReference {
         modelFunctions[id] = modelFunction
         return SimpleModelReference(id)
     }
 
     fun getModel(id: ResourceLocation) = modelCache.computeIfAbsent(id, modelFunctions.getValue(id))
     fun hasModel(id: ResourceLocation) = modelFunctions.containsKey(id)
-    fun getOrRegisterModel(id: ResourceLocation, modelFunction: (ResourceLocation) -> SimpleRenderable): SimpleRenderable {
+    fun getOrRegisterModel(id: ResourceLocation, modelFunction: (ResourceLocation) -> CompositeRenderable): CompositeRenderable {
         if (!hasModel(id)) registerModel(id, modelFunction)
         return getModel(id)
     }
@@ -124,7 +124,7 @@ object SpecialModels : ResourceManagerReloadListener {
         }
     }
 
-    class SimpleModelReference(val id: ResourceLocation) : Supplier<SimpleRenderable> {
+    class SimpleModelReference(val id: ResourceLocation) : Supplier<CompositeRenderable> {
         override fun get() = getModel(id)
     }
 

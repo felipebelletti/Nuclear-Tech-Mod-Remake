@@ -7,11 +7,11 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider
 import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraftforge.client.model.renderable.MultipartTransforms
-import net.minecraftforge.client.model.renderable.SimpleRenderable
+import net.minecraftforge.client.model.renderable.CompositeRenderable
 
 abstract class GenericBlockEntityRenderer<T : BlockEntity>(@Suppress("UNUSED_PARAMETER") context: BlockEntityRendererProvider.Context) : BlockEntityRenderer<T> {
     protected open val renderType = RenderType::entityCutout
-    abstract fun getModel(blockEntity: T): SimpleRenderable
+    abstract fun getModel(blockEntity: T): CompositeRenderable
 
     override fun render(blockEntity: T, partials: Float, matrix: PoseStack, buffers: MultiBufferSource, light: Int, overlay: Int) {
         matrix.pushPose()

@@ -10,7 +10,7 @@ import org.joml.Vector3f
 import net.minecraft.client.renderer.GameRenderer
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider
-import net.minecraftforge.client.model.renderable.SimpleRenderable
+import net.minecraftforge.client.model.renderable.CompositeRenderable
 import kotlin.math.max
 import kotlin.math.min
 
@@ -19,7 +19,7 @@ class RBMKConsoleRenderer(context: BlockEntityRendererProvider.Context) : Rotate
 
     override fun getModel(blockEntity: RBMKConsoleBlockEntity) = SpecialModels.RBMK_CONSOLE.get()
 
-    override fun renderRotated(blockEntity: RBMKConsoleBlockEntity, model: SimpleRenderable, partials: Float, matrix: PoseStack, buffers: MultiBufferSource, light: Int, overlay: Int) {
+    override fun renderRotated(blockEntity: RBMKConsoleBlockEntity, model: CompositeRenderable, partials: Float, matrix: PoseStack, buffers: MultiBufferSource, light: Int, overlay: Int) {
         super.renderRotated(blockEntity, model, partials, matrix, buffers, light, overlay)
 
         matrix.mulPose(Vector3f.YP.rotationDegrees(-90F))

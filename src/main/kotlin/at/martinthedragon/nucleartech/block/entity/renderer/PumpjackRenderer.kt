@@ -15,13 +15,13 @@ import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider
 import net.minecraft.world.phys.Vec3
 import net.minecraftforge.client.model.renderable.MultipartTransforms
-import net.minecraftforge.client.model.renderable.SimpleRenderable
+import net.minecraftforge.client.model.renderable.CompositeRenderable
 import kotlin.math.sin
 
 class PumpjackRenderer(context: BlockEntityRendererProvider.Context) : RotatedBlockEntityRenderer<PumpjackBlockEntity>(context) {
     override fun getModel(blockEntity: PumpjackBlockEntity) = SpecialModels.PUMPJACK.get()
 
-    override fun renderRotated(blockEntity: PumpjackBlockEntity, model: SimpleRenderable, partials: Float, matrix: PoseStack, buffers: MultiBufferSource, light: Int, overlay: Int) {
+    override fun renderRotated(blockEntity: PumpjackBlockEntity, model: CompositeRenderable, partials: Float, matrix: PoseStack, buffers: MultiBufferSource, light: Int, overlay: Int) {
         val rotation = if (blockEntity.canProgress)
             blockEntity.rotO + (blockEntity.rot - blockEntity.rotO) * partials
         else blockEntity.rot.toFloat()
