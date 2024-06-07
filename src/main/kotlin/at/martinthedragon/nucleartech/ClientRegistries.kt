@@ -31,7 +31,7 @@ import net.minecraft.client.renderer.entity.ItemEntityRenderer
 import net.minecraft.client.renderer.entity.ThrownItemRenderer
 import net.minecraft.client.renderer.item.ItemProperties
 import net.minecraft.client.renderer.item.ItemPropertyFunction
-import net.minecraft.client.searchtree.RefreshableSearchTreee
+import net.minecraft.client.searchtree.RefreshableSearchTree
 import net.minecraft.util.Mth
 import net.minecraft.world.inventory.InventoryMenu
 import net.minecraft.world.inventory.MenuType
