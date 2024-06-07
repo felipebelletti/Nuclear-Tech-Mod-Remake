@@ -3,9 +3,6 @@ package at.martinthedragon.nucleartech.block
 import at.martinthedragon.nucleartech.api.block.entities.createServerTickerChecked
 import at.martinthedragon.nucleartech.block.entity.BlockEntityTypes
 import at.martinthedragon.nucleartech.block.entity.transmitters.CableBlockEntity
-import at.martinthedragon.nucleartech.math.component1
-import at.martinthedragon.nucleartech.math.component2
-import at.martinthedragon.nucleartech.math.component3
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.world.level.Level
@@ -38,9 +35,7 @@ class CoatedCableBlock(properties: Properties) : BaseEntityBlock(properties) {
     private fun handleNeighborChange(level: LevelReader, pos: BlockPos, neighbor: BlockPos) {
         val blockEntity = level.getBlockEntity(pos)
         if (blockEntity is CableBlockEntity) {
-            val (x, y, z) = pos
-            val (nx, ny, nz) = neighbor
-            val direction = Direction.getNearest((nx - x).toFloat(), (ny - y).toFloat(), (nz - z).toFloat())
+            val direction = Direction.getNearest((neighbor.x - pos.x).toFloat(), (neighbor.y - pos.y).toFloat(), (neighbor.z - pos.z).toFloat())
             blockEntity.neighborChanged(direction)
         }
     }
