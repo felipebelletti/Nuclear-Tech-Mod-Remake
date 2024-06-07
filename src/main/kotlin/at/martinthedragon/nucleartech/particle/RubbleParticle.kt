@@ -10,7 +10,7 @@ import com.mojang.blaze3d.vertex.PoseStack
 import com.mojang.blaze3d.vertex.Tesselator
 import com.mojang.blaze3d.vertex.VertexConsumer
 import com.mojang.math.Vector3d
-import com.mojang.math.Vector3f
+import org.joml.Vector3f
 import net.minecraft.client.Camera
 import net.minecraft.client.Minecraft
 import net.minecraft.client.model.Model

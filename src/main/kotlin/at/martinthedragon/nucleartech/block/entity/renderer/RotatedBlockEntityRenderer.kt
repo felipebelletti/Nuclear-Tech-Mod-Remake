@@ -1,7 +1,7 @@
 package at.martinthedragon.nucleartech.block.entity.renderer
 
 import com.mojang.blaze3d.vertex.PoseStack
-import com.mojang.math.Vector3f
+import org.joml.Vector3f
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider
 import net.minecraft.world.level.block.HorizontalDirectionalBlock

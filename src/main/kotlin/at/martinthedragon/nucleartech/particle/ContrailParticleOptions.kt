@@ -1,7 +1,7 @@
 package at.martinthedragon.nucleartech.particle
 
 import com.mojang.brigadier.StringReader
-import com.mojang.math.Vector3f
+import org.joml.Vector3f
 import com.mojang.serialization.Codec
 import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.minecraft.core.particles.DustParticleOptionsBase

@@ -3,7 +3,7 @@ package at.martinthedragon.nucleartech.entity.renderer
 import at.martinthedragon.nucleartech.entity.RBMKDebris
 import at.martinthedragon.nucleartech.rendering.SpecialModels
 import com.mojang.blaze3d.vertex.PoseStack
-import com.mojang.math.Vector3f
+import org.joml.Vector3f
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.client.renderer.entity.EntityRenderer

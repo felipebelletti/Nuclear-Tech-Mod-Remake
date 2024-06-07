@@ -5,7 +5,7 @@ import at.martinthedragon.nucleartech.ntm
 import at.martinthedragon.nucleartech.rendering.NuclearModelLayers
 import com.mojang.blaze3d.vertex.PoseStack
 import com.mojang.blaze3d.vertex.VertexConsumer
-import com.mojang.math.Vector3f
+import org.joml.Vector3f
 import net.minecraft.client.Minecraft
 import net.minecraft.client.model.Model
 import net.minecraft.client.model.geom.ModelPart

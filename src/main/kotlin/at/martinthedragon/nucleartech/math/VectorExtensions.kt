@@ -1,7 +1,7 @@
 package at.martinthedragon.nucleartech.math
 
 import com.mojang.math.Vector3d
-import com.mojang.math.Vector3f
+import org.joml.Vector3f
 import com.mojang.math.Vector4f
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Vec3i

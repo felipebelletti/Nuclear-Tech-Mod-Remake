@@ -8,7 +8,7 @@ import at.martinthedragon.nucleartech.ntm
 import at.martinthedragon.nucleartech.particle.ContrailParticleOptions
 import at.martinthedragon.nucleartech.particle.sendParticles
 import at.martinthedragon.nucleartech.world.ChunkLoader
-import com.mojang.math.Vector3f
+import org.joml.Vector3f
 import net.minecraft.core.BlockPos
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.protocol.Packet

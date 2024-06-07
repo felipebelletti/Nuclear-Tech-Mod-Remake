@@ -5,8 +5,8 @@ import at.martinthedragon.nucleartech.block.entity.renderer.RotatedBlockEntityRe
 import at.martinthedragon.nucleartech.rendering.SpecialModels
 import com.mojang.blaze3d.systems.RenderSystem
 import com.mojang.blaze3d.vertex.*
-import com.mojang.math.Matrix4f
-import com.mojang.math.Vector3f
+import org.joml.Matrix4f
+import org.joml.Vector3f
 import net.minecraft.client.renderer.GameRenderer
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider

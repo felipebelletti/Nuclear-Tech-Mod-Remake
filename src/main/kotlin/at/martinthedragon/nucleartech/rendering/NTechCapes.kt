@@ -4,7 +4,7 @@ import at.martinthedragon.nucleartech.NuclearTech
 import at.martinthedragon.nucleartech.config.NuclearConfig
 import at.martinthedragon.nucleartech.ntm
 import com.mojang.blaze3d.vertex.PoseStack
-import com.mojang.math.Vector3f
+import org.joml.Vector3f
 import net.minecraft.client.model.PlayerModel
 import net.minecraft.client.player.AbstractClientPlayer
 import net.minecraft.client.renderer.MultiBufferSource
