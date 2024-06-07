@@ -24,7 +24,7 @@ import net.minecraftforge.event.AddReloadListenerEvent
 import net.minecraftforge.event.AttachCapabilitiesEvent
 import net.minecraftforge.event.ItemAttributeModifierEvent
 import net.minecraftforge.event.TickEvent
-import net.minecraftforge.event.entity.EntityJoinWorldEvent
+import net.minecraftforge.event.entity.EntityJoinLevelEvent
 import net.minecraftforge.event.entity.EntityLeaveWorldEvent
 import net.minecraftforge.event.entity.living.*
 import net.minecraftforge.event.entity.player.PlayerFlyableFallEvent
@@ -53,7 +53,7 @@ object EventSubscribers {
 
     @SubscribeEvent(priority = EventPriority.LOW)
     @JvmStatic
-    fun trackItemEntityHazardSystem(event: EntityJoinWorldEvent) {
+    fun trackItemEntityHazardSystem(event: EntityJoinLevelEvent) {
         val entity = event.entity
         if (entity is ItemEntity) HazardSystem.trackItemEntity(entity)
     }

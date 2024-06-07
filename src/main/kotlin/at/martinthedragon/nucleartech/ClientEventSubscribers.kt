@@ -15,7 +15,7 @@ import net.minecraftforge.client.event.RecipesUpdatedEvent
 import net.minecraftforge.client.event.RenderPlayerEvent
 import net.minecraftforge.client.event.RenderTooltipEvent
 import net.minecraftforge.event.TagsUpdatedEvent
-import net.minecraftforge.event.entity.EntityJoinWorldEvent
+import net.minecraftforge.event.entity.EntityJoinLevelEvent
 import net.minecraftforge.event.entity.player.ItemTooltipEvent
 import net.minecraftforge.eventbus.api.SubscribeEvent
 import net.minecraftforge.fml.VersionChecker
@@ -58,7 +58,7 @@ object ClientEventSubscribers {
     private var didVersionCheck = false
 
     @SubscribeEvent @JvmStatic
-    fun clientVersionCheckChatMessage(event: EntityJoinWorldEvent) {
+    fun clientVersionCheckChatMessage(event: EntityJoinLevelEvent) {
         val entity: Entity = event.entity
         if (!didVersionCheck && entity === Minecraft.getInstance().player) {
             val message = createVersionUpdateChatMessage()
