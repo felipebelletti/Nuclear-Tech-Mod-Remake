@@ -50,5 +50,5 @@ object SoundEvents {
     val sirenTrackSweepSiren = register("siren.sweep")
     val sirenTrackVaultDoorAlarm = register("siren.vault_door")
 
-    private fun register(name: String): RegistryObject<SoundEvent> = SOUNDS.register(name) { SoundEvent(ntm(name)) }
+    private fun register(name: String): RegistryObject<SoundEvent> = SOUNDS.register(name) { SoundEvent.createVariableRangeEvent(ntm(name)) }
 }
