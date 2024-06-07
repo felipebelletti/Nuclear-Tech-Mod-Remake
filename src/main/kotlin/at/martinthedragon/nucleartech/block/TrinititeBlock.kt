@@ -2,6 +2,7 @@ package at.martinthedragon.nucleartech.block
 
 import net.minecraft.core.BlockPos
 import net.minecraft.core.particles.ParticleTypes
+import net.minecraft.util.RandomSource
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.state.BlockState
@@ -11,7 +12,7 @@ class TrinititeBlock(properties: Properties) : Block(properties) {
     // TODO radiation effects
     // TODO automatic rad cleanup
 
-    override fun animateTick(state: BlockState, world: Level, pos: BlockPos, random: Random) {
+    override fun animateTick(state: BlockState, world: Level, pos: BlockPos, p_220830_: RandomSource) {
         if (random.nextInt(5) == 0) {
             world.addParticle(
                 ParticleTypes.MYCELIUM,

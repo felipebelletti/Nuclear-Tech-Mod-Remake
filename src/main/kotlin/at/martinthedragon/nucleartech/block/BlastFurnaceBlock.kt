@@ -7,6 +7,7 @@ import at.martinthedragon.nucleartech.block.entity.BlockEntityTypes
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.core.particles.ParticleTypes
+import net.minecraft.util.RandomSource
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.damagesource.DamageSource
 import net.minecraft.world.entity.Entity
@@ -47,7 +48,7 @@ class BlastFurnaceBlock(properties: Properties) : BaseEntityBlock(properties) {
             entity.hurt(DamageSource.HOT_FLOOR, 2F)
     }
 
-    override fun animateTick(state: BlockState, level: Level, pos: BlockPos, random: Random) {
+    override fun animateTick(state: BlockState, level: Level, pos: BlockPos, p_220830_: RandomSource) {
         if (state.getValue(BlockStateProperties.LIT)) {
             val posX = pos.x + .5
             val posY = pos.y

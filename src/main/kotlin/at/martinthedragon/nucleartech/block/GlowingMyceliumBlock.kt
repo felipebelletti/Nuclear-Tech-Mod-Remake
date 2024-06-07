@@ -10,6 +10,7 @@ import at.martinthedragon.nucleartech.config.NuclearConfig
 import net.minecraft.core.BlockPos
 import net.minecraft.core.particles.ParticleTypes
 import net.minecraft.server.level.ServerLevel
+import net.minecraft.util.RandomSource
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.level.Level
@@ -59,7 +60,7 @@ class GlowingMyceliumBlock(properties: Properties) : DeadGrassBlock(properties) 
         }
     }
 
-    override fun animateTick(state: BlockState, world: Level, pos: BlockPos, random: Random) {
+    override fun animateTick(state: BlockState, world: Level, pos: BlockPos, p_220830_: RandomSource) {
         if (random.nextInt(5) == 0) {
             world.addParticle(
                 ParticleTypes.MYCELIUM,

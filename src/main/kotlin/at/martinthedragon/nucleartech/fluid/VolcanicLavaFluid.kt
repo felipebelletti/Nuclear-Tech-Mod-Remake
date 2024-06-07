@@ -7,6 +7,7 @@ import net.minecraft.core.Direction
 import net.minecraft.core.particles.ParticleTypes
 import net.minecraft.sounds.SoundEvents
 import net.minecraft.sounds.SoundSource
+import net.minecraft.util.RandomSource
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.LevelReader
 import net.minecraft.world.level.block.Blocks
@@ -21,7 +22,7 @@ abstract class VolcanicLavaFluid(properties: Properties) : ForgeFlowingFluid(pro
 
     override fun isRandomlyTicking() = true
 
-    override fun randomTick(level: Level, pos: BlockPos, fluidState: FluidState, random: Random) {
+    override fun randomTick(level: Level, pos: BlockPos, fluidState: FluidState, p_230557_: RandomSource) {
         if (!level.isClientSide) {
             val belowPos = pos.relative(Direction.DOWN)
             if (level.getFluidState(belowPos).`is`(NTechTags.Fluids.VOLCANIC_LAVA) && random.nextInt(3) != 0) return // if we aren't touching the ground, skip most of the time

@@ -9,6 +9,7 @@ import net.minecraft.core.particles.ParticleTypes
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.sounds.SoundEvents
 import net.minecraft.sounds.SoundSource
+import net.minecraft.util.RandomSource
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.entity.LivingEntity
@@ -52,7 +53,7 @@ class CombustionGeneratorBlock(properties: Properties) : BaseEntityBlock(propert
         return InteractionResult.sidedSuccess(level.isClientSide)
     }
 
-    override fun animateTick(state: BlockState, level: Level, pos: BlockPos, random: Random) {
+    override fun animateTick(state: BlockState, level: Level, pos: BlockPos, p_220830_: RandomSource) {
         if (state.getValue(BlockStateProperties.LIT)) {
             val posX = pos.x + 0.5
             val posY = pos.y.toDouble()
