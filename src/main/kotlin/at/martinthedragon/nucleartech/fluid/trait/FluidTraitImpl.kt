@@ -6,7 +6,7 @@ import at.martinthedragon.nucleartech.api.fluid.trait.FluidTrait
 import net.minecraft.Util
 import net.minecraft.network.chat.MutableComponent
 import net.minecraft.network.chat.Style
-import net.minecraft.network.chat.TranslatableComponent
+import net.minecraft.network.chat.Component
 import net.minecraftforge.registries.ForgeRegistryEntry
 
 open class FluidTraitImpl(protected val styleModifier: Style) : ForgeRegistryEntry<FluidTrait>(), FluidTrait {
@@ -19,5 +19,5 @@ open class FluidTraitImpl(protected val styleModifier: Style) : ForgeRegistryEnt
             return _descriptionId!!
         }
 
-    override fun getName(data: AttachedFluidTrait<*>): MutableComponent = TranslatableComponent(descriptionId).withStyle(styleModifier)
+    override fun getName(data: AttachedFluidTrait<*>): MutableComponent = Component.translatable(descriptionId).withStyle(styleModifier)
 }

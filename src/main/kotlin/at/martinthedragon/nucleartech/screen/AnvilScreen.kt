@@ -27,7 +27,7 @@ import net.minecraft.client.sounds.SoundManager
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.MutableComponent
 import net.minecraft.network.chat.Component.literal
-import net.minecraft.network.chat.TranslatableComponent
+import net.minecraft.network.chat.Component
 import net.minecraft.world.entity.player.Inventory
 import kotlin.math.ceil
 import kotlin.math.min
@@ -72,7 +72,7 @@ class AnvilScreen(anvilMenu: AnvilMenu, playerInventory: Inventory, title: Compo
         recipeButtons = newButtons.toList()
 
         getMinecraft().keyboardHandler.setSendRepeatsToGui(true)
-        searchBox = addRenderableWidget(EditBox(font, guiLeft + 10, guiTop + 111, 106, 12, TranslatableComponent("itemGroup.search")))
+        searchBox = addRenderableWidget(EditBox(font, guiLeft + 10, guiTop + 111, 106, 12, Component.translatable("itemGroup.search")))
         with(searchBox) {
             setTextColor(0xFFFFFF)
             setTextColorUneditable(0xFFFFFF)

@@ -6,7 +6,7 @@ import at.martinthedragon.nucleartech.block.entity.rbmk.RBMKFluxReceiver
 import at.martinthedragon.nucleartech.extensions.*
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.Component.literal
-import net.minecraft.network.chat.TranslatableComponent
+import net.minecraft.network.chat.Component
 import net.minecraft.util.Mth
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
@@ -122,10 +122,10 @@ class RBMKRodItem(
             enrichment = reactivityModByEnrichment(enrichment)
             val reactivity = Component.literal("${(this.reactivity * enrichment * 1000.0).toInt() / 1000.0}").yellow()
             val enrichmentEach = Component.literal(" (${(enrichment * 1000.0).toInt() / 10.0}%)").gold()
-            return TranslatableComponent(function, if (selfRate > 0) Component.literal("(x").append(Component.literal(" + $selfRate").red()).append(")") else "x", reactivity).white().append(enrichmentEach)
+            return Component.translatable(function, if (selfRate > 0) Component.literal("(x").append(Component.literal(" + $selfRate").red()).append(")") else "x", reactivity).white().append(enrichmentEach)
         }
 
-        return TranslatableComponent(function, if (selfRate > 0) Component.literal("(x").append(Component.literal(" + $selfRate").red()).append(")") else "x", reactivity).white()
+        return Component.translatable(function, if (selfRate > 0) Component.literal("(x").append(Component.literal(" + $selfRate").red()).append(")") else "x", reactivity).white()
     }
 
     override fun isBarVisible(stack: ItemStack) = getBarWidth(stack) < 13

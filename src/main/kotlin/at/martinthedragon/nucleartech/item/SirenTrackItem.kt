@@ -16,11 +16,11 @@ class SirenTrackItem(val soundSupplier: Supplier<SoundEvent>, val range: Int, va
     Item(Properties().stacksTo(1).rarity(Rarity.UNCOMMON).tab(CreativeTabs.Templates.tab))
 {
     // lazy is used here because otherwise the descriptionId gets created too early and becomes item.minecraft.air
-    val trackName: Component by lazy { TranslatableComponent(descriptionId).withStyle(Style.EMPTY.withColor(TextColor.fromRgb(color))) }
+    val trackName: Component by lazy { Component.translatable(descriptionId).withStyle(Style.EMPTY.withColor(TextColor.fromRgb(color))) }
     val trackType: Component = (if (loop) LangKeys.SIREN_TRACK_LOOP.get() else LangKeys.SIREN_TRACK_ONCE.get()).withStyle(Style.EMPTY.withColor(TextColor.fromRgb(color)))
     val trackRange: Component = LangKeys.SIREN_TRACK_RANGE.format(range).withStyle(Style.EMPTY.withColor(TextColor.fromRgb(color)))
 
-    override fun getDescription(): Component = LangKeys.SIREN_TRACK_SIREN_TRACK.append(Component.literal(" - ")).append(TranslatableComponent(descriptionId))
+    override fun getDescription(): Component = LangKeys.SIREN_TRACK_SIREN_TRACK.append(Component.literal(" - ")).append(Component.translatable(descriptionId))
 
     override fun getName(stack: ItemStack) = description
 

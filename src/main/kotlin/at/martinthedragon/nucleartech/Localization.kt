@@ -1,6 +1,6 @@
 package at.martinthedragon.nucleartech
 
-import net.minecraft.network.chat.TranslatableComponent
+import net.minecraft.network.chat.Component
 import java.util.function.Supplier
 
 // Arguments in comments
@@ -338,7 +338,7 @@ object LangKeys {
 }
 
 @JvmInline
-value class TranslationKey(val key: String) : Supplier<TranslatableComponent> {
+value class TranslationKey(val key: String) : Supplier<Component> {
     constructor(category: String, path: String, namespace: String = NuclearTech.MODID) : this("$category.$namespace.$path")
 
     init {
@@ -350,8 +350,8 @@ value class TranslationKey(val key: String) : Supplier<TranslatableComponent> {
     val namespace get() = key.substringAfter('.').substringBefore('.')
     val path get() = key.substringAfter('.').substringAfter('.')
 
-    override fun get() = TranslatableComponent(key)
-    fun format(vararg args: Any) = TranslatableComponent(key, *args)
+    override fun get() = Component.translatable(key)
+    fun format(vararg args: Any) = Component.translatable(key, *args)
 
     companion object {
         fun isValidKey(key: String) = key.count { it == '.' } >= 2 && key.none(Char::isUpperCase)

@@ -18,7 +18,7 @@ import net.minecraft.nbt.ListTag
 import net.minecraft.nbt.Tag
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.Component.literal
-import net.minecraft.network.chat.TranslatableComponent
+import net.minecraft.network.chat.Component
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.sounds.SoundEvent
 import net.minecraft.world.entity.player.Inventory
@@ -204,7 +204,7 @@ class RBMKConsoleBlockEntity(pos: BlockPos, state: BlockState) : BaseMachineBloc
                 Type.BOILER -> {
                     add(LangKeys.RBMK_BOILER_WATER.format(data.getDouble("Water"), data.getDouble("MaxHeat")).blue())
                     add(LangKeys.RBMK_BOILER_STEAM.format(data.getDouble("Steam"), data.getDouble("MaxSteam")).white())
-                    add(LangKeys.RBMK_BOILER_TYPE.format(ForgeRegistries.FLUIDS.getValue(ResourceLocation(data.getString("SteamType")))?.attributes?.translationKey?.let { TranslatableComponent(it) } ?: "N/A").yellow())
+                    add(LangKeys.RBMK_BOILER_TYPE.format(ForgeRegistries.FLUIDS.getValue(ResourceLocation(data.getString("SteamType")))?.attributes?.translationKey?.let { Component.translatable(it) } ?: "N/A").yellow())
                 }
                 Type.CONTROL -> {
                     add(LangKeys.RBMK_CONTROL_ROD_LEVEL.format((data.getDouble("RodLevel") * 1000.0).toInt() / 10.0).yellow())

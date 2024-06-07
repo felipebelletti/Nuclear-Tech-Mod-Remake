@@ -20,7 +20,7 @@ import net.minecraft.client.gui.screens.Screen
 import net.minecraft.client.renderer.GameRenderer
 import net.minecraft.client.searchtree.SearchRegistry
 import net.minecraft.network.chat.Component.literal
-import net.minecraft.network.chat.TranslatableComponent
+import net.minecraft.network.chat.Component
 import net.minecraft.world.item.ItemStack
 import net.minecraftforge.registries.ForgeRegistries
 import kotlin.math.ceil
@@ -64,7 +64,7 @@ class UseTemplateFolderScreen : Screen(NTechItems.machineTemplateFolder.get().de
         val left = (width - GUI_WIDTH) / 2
         val top = (height - GUI_HEIGHT) / 2
 
-        searchBox = addRenderableWidget(EditBox(font, left + 61, top + 213, 54, 10, TranslatableComponent("itemGroup.search")))
+        searchBox = addRenderableWidget(EditBox(font, left + 61, top + 213, 54, 10, Component.translatable("itemGroup.search")))
         with(searchBox) {
             setMaxLength(50)
             setBordered(false)

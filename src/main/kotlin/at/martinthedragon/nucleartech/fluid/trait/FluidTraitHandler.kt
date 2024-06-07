@@ -7,7 +7,7 @@ import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.screens.Screen
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.Component.literal
-import net.minecraft.network.chat.TranslatableComponent
+import net.minecraft.network.chat.Component
 import net.minecraft.world.item.TooltipFlag
 import net.minecraft.world.level.material.Fluids
 import net.minecraftforge.client.event.RenderTooltipEvent
@@ -33,7 +33,7 @@ object FluidTraitHandler {
         } else { // if there's no item stack, try to understand whether and what fluid we have as good as we can
             var changed = false
             for (entry in event.tooltipElements.map { it.left() }) {
-                val component = entry.getOrNull() as? TranslatableComponent ?: continue
+                val component = entry.getOrNull() as? Component ?: continue
                 val fluid = (component.args.flatMap(::flattenArgs) + component.key)
                     .firstNotNullOfOrNull { ForgeRegistries.FLUIDS.firstOrNull { fluid -> fluid.attributes.translationKey == it } } ?: continue
                 if (fluid.isSame(Fluids.EMPTY)) continue
@@ -53,7 +53,7 @@ object FluidTraitHandler {
         val level = Minecraft.getInstance().level
         val flag = if (Minecraft.getInstance().options.advancedItemTooltips || Screen.hasShiftDown()) TooltipFlag.Default.ADVANCED else TooltipFlag.Default.NORMAL
 
-        if (flag.isAdvanced) tooltip += TranslatableComponent(fluid.translationKey).gray()
+        if (flag.isAdvanced) tooltip += Component.translatable(fluid.translationKey).gray()
 
         val traits = FluidTraitManager.getTraitsForFluidStack(fluid)
         for (trait in traits) {
@@ -64,7 +64,7 @@ object FluidTraitHandler {
     }
 
     private fun flattenArgs(arg: Any, passOn: MutableList<String> = mutableListOf()): Collection<String> {
-        if (arg is TranslatableComponent) {
+        if (arg is Component) {
             passOn += arg.key
             arg.args.forEach { flattenArgs(it, passOn) }
         } else {

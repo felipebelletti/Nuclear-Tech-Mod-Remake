@@ -6,7 +6,7 @@ import net.minecraft.core.BlockPos
 import net.minecraft.core.NonNullList
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.Component.literal
-import net.minecraft.network.chat.TranslatableComponent
+import net.minecraft.network.chat.Component
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.item.CreativeModeTab
@@ -18,7 +18,7 @@ import net.minecraft.world.level.material.Fluids
 import net.minecraftforge.registries.ForgeRegistries
 
 class FluidIdentifierItem(properties: Properties) : AutoTooltippedItem(properties) {
-    override fun getName(stack: ItemStack): Component = TranslatableComponent(getDescriptionId(stack), getFluid(stack).let { if (it.isSame(Fluids.EMPTY)) Component.literal("N/A") else TranslatableComponent(it.attributes.translationKey) })
+    override fun getName(stack: ItemStack): Component = Component.translatable(getDescriptionId(stack), getFluid(stack).let { if (it.isSame(Fluids.EMPTY)) Component.literal("N/A") else Component.translatable(it.attributes.translationKey) })
 
     override fun fillItemCategory(tab: CreativeModeTab, items: NonNullList<ItemStack>) {
         if (allowdedIn(tab)) {

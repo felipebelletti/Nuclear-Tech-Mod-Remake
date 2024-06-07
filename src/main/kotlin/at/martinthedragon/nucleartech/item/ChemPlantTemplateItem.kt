@@ -14,7 +14,7 @@ import net.minecraft.client.resources.model.ModelBakery
 import net.minecraft.core.NonNullList
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.Component.literal
-import net.minecraft.network.chat.TranslatableComponent
+import net.minecraft.network.chat.Component
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.packs.resources.ResourceManager
 import net.minecraft.world.item.CreativeModeTab
@@ -32,7 +32,7 @@ import java.util.function.Consumer
 import kotlin.math.floor
 
 class ChemPlantTemplateItem(properties: Properties) : Item(properties) {
-    override fun getName(stack: ItemStack): Component = TranslatableComponent(getDescriptionId(stack), Minecraft.getInstance().level?.use { getRecipeFromStack(stack, it.recipeManager)?.recipeID }?.let { TranslatableComponent("${LangKeys.CAT_CHEMISTRY}.${it.namespace}.${it.path.removePrefix("chem/")}") } ?: "N/A")
+    override fun getName(stack: ItemStack): Component = Component.translatable(getDescriptionId(stack), Minecraft.getInstance().level?.use { getRecipeFromStack(stack, it.recipeManager)?.recipeID }?.let { Component.translatable("${LangKeys.CAT_CHEMISTRY}.${it.namespace}.${it.path.removePrefix("chem/")}") } ?: "N/A")
 
     override fun fillItemCategory(tab: CreativeModeTab, items: NonNullList<ItemStack>) {
         val recipeManager = DistExecutor.safeRunForDist({ SafeSupplier(::getRecipeManagerClient) }) { SafeSupplier(::getRecipeManagerServer) } ?: return

@@ -14,7 +14,7 @@ import net.minecraft.client.Minecraft
 import net.minecraft.core.NonNullList
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.Component.literal
-import net.minecraft.network.chat.TranslatableComponent
+import net.minecraft.network.chat.Component
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.item.CreativeModeTab
 import net.minecraft.world.item.Item
@@ -29,7 +29,7 @@ import java.util.function.Consumer
 import kotlin.math.floor
 
 class AssemblyTemplateItem(properties: Properties) : Item(properties) {
-    override fun getName(stack: ItemStack): Component = TranslatableComponent(getDescriptionId(stack), Minecraft.getInstance().level?.let { getRecipeFromStack(stack, it.recipeManager)?.resultItem?.hoverName } ?: "N/A")
+    override fun getName(stack: ItemStack): Component = Component.translatable(getDescriptionId(stack), Minecraft.getInstance().level?.let { getRecipeFromStack(stack, it.recipeManager)?.resultItem?.hoverName } ?: "N/A")
 
     override fun fillItemCategory(tab: CreativeModeTab, items: NonNullList<ItemStack>) {
         val recipeManager = DistExecutor.safeRunForDist({ SafeSupplier(::getRecipeManagerClient) }) { SafeSupplier(::getRecipeManagerServer) } ?: return

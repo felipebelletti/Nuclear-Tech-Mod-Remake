@@ -10,7 +10,7 @@ import at.martinthedragon.nucleartech.extensions.*
 import at.martinthedragon.nucleartech.ntmTranslationString
 import net.minecraft.client.resources.language.I18n
 import net.minecraft.network.chat.Component
-import net.minecraft.network.chat.TranslatableComponent
+import net.minecraft.network.chat.Component
 import net.minecraft.sounds.SoundEvent
 import net.minecraft.world.damagesource.DamageSource
 import net.minecraft.world.effect.MobEffectInstance
@@ -38,7 +38,7 @@ open class FullSetBonusArmorItem(material: ArmorMaterial, slot: EquipmentSlot, v
         tooltip.apply {
             val originalCount = tooltip.size
             with(bonus) {
-                for (effect in effects) add(TranslatableComponent(effect.descriptionId).aqua().prependIntent())
+                for (effect in effects) add(Component.translatable(effect.descriptionId).aqua().prependIntent())
                 for (resistance in resistances)
                     if (resistance.value != 0F) add(LangKeys.ARMOR_DAMAGE_RESISTANCE_MODIFIER.format(I18n.get(ntmTranslationString("armor.resistance.${resistance.key.msgId}"))).yellow().prependIntent())
                     else add(LangKeys.ARMOR_NULLIFIES_DAMAGE.format(I18n.get(ntmTranslationString("armor.resistance.${resistance.key.msgId}"))).red().prependIntent())
