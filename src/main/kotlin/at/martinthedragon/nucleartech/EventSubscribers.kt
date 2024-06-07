@@ -25,7 +25,7 @@ import net.minecraftforge.event.AttachCapabilitiesEvent
 import net.minecraftforge.event.ItemAttributeModifierEvent
 import net.minecraftforge.event.TickEvent
 import net.minecraftforge.event.entity.EntityJoinLevelEvent
-import net.minecraftforge.event.entity.EntityLeaveWorldEvent
+import net.minecraftforge.event.entity.EntityLeaveLevelEvent
 import net.minecraftforge.event.entity.living.*
 import net.minecraftforge.event.entity.player.PlayerFlyableFallEvent
 import net.minecraftforge.event.entity.player.PlayerInteractEvent
@@ -59,7 +59,7 @@ object EventSubscribers {
     }
 
     @SubscribeEvent @JvmStatic
-    fun stopTrackingItemEntityHazardSystem(event: EntityLeaveWorldEvent) {
+    fun stopTrackingItemEntityHazardSystem(event: EntityLeaveLevelEvent) {
         val entity = event.entity
         if (entity is ItemEntity) HazardSystem.stopTrackingItemEntity(entity)
     }

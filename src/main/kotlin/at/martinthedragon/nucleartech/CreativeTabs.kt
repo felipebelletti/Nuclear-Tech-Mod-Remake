@@ -14,7 +14,9 @@ enum class CreativeTabs(val tab: CreativeModeTab) {
     Templates(createTab("templates", NTechItems::machineTemplateFolder)),
     Blocks(createTab("blocks", NTechBlockItems::uraniumOre)),
     Machines(createTab("machines", NTechBlockItems::safe)), // TODO
-    Bombs(createTab("bombs", NTechBlockItems::fatMan).setBackgroundImage(ntm("textures/gui/creative_inventory/tab_nuke.png"))),
+    // TODO: setBackgroundImage new forge
+    // Bombs(createTab("bombs", NTechBlockItems::fatMan).setBackgroundImage(ntm("textures/gui/creative_inventory/tab_nuke.png"))),
+    Bombs(createTab("bombs", NTechBlockItems::fatMan)),
     Rocketry(createTab("rocketry", NTechItems::nuclearMissile)),
     Consumables(createTab("consumables", NTechItems::oilDetector)),
     Miscellaneous(createTab("miscellaneous", NTechItems::nuclearCreeperSpawnEgg))
