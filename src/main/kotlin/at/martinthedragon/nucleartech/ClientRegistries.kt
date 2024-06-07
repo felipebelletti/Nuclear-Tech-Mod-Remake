@@ -31,7 +31,7 @@ import net.minecraft.client.renderer.entity.ItemEntityRenderer
 import net.minecraft.client.renderer.entity.ThrownItemRenderer
 import net.minecraft.client.renderer.item.ItemProperties
 import net.minecraft.client.renderer.item.ItemPropertyFunction
-import net.minecraft.client.searchtree.ReloadableSearchTree
+import net.minecraft.client.searchtree.RefreshableSearchTreee
 import net.minecraft.util.Mth
 import net.minecraft.world.inventory.InventoryMenu
 import net.minecraft.world.inventory.MenuType
@@ -82,12 +82,12 @@ object ClientRegistries {
     @SubscribeEvent @JvmStatic
     fun clientSetup(event: FMLClientSetupEvent) {
         NuclearTech.LOGGER.debug("Creating search trees")
-        val templateFolderSearchTree = ReloadableSearchTree<ItemStack>({
+        val templateFolderSearchTree = RefreshableSearchTree<ItemStack>({
             it.getTooltipLines(null, TooltipFlag.Default.NORMAL).map { tooltip ->
                 ChatFormatting.stripFormatting(tooltip.string)!!.trim()
             }.stream()
         }) { Stream.of(ForgeRegistries.ITEMS.getKey(it.item)) }
-        val anvilConstructingRecipeSearchTree = ReloadableSearchTree<AnvilConstructingRecipe>({
+        val anvilConstructingRecipeSearchTree = RefreshableSearchTree<AnvilConstructingRecipe>({
             val results = it.results.map(AnvilConstructingRecipe.ConstructingResult::stack).flatMap { stack -> stack.getTooltipLines(null, TooltipFlag.Default.NORMAL).map { tooltip -> ChatFormatting.stripFormatting(tooltip.string)!!.trim() }}
 
             if (it.results.size > 1 && it.ingredientsList.size == 1) {
