@@ -26,7 +26,7 @@ import net.minecraftforge.fml.common.Mod
 object ClientEventSubscribers {
     @SubscribeEvent @JvmStatic
     fun onItemTooltip(event: ItemTooltipEvent) {
-        HazardSystem.addHoverText(event.itemStack, event.player, event.toolTip, event.flags)
+        HazardSystem.addHoverText(event.itemStack, event.entity, event.toolTip, event.flags)
     }
 
     @SubscribeEvent @JvmStatic
@@ -47,7 +47,7 @@ object ClientEventSubscribers {
 
     @SubscribeEvent @JvmStatic
     fun onRenderPlayer(event: RenderPlayerEvent.Pre) {
-        NTechCapes.renderCape(event.player, event.renderer)
+        NTechCapes.renderCape(event.entity, event.renderer)
     }
 
     @SubscribeEvent @JvmStatic

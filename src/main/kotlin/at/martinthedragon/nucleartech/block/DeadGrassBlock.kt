@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.SnowLayerBlock
 import net.minecraft.world.level.block.state.BlockState
-import net.minecraft.world.level.lighting.LayerLightEngine
+import net.minecraft.world.level.lighting.LightEngine
 import java.util.*
 
 open class DeadGrassBlock(properties: Properties) : Block(properties) {
@@ -19,7 +19,7 @@ open class DeadGrassBlock(properties: Properties) : Block(properties) {
             aboveState.`is`(Blocks.SNOW) && aboveState.getValue(SnowLayerBlock.LAYERS) == 1 -> true
             aboveState.fluidState.amount == 8 -> false
             else -> {
-                val i = LayerLightEngine.getLightBlockInto(levelReader, state, pos, aboveState, abovePos, Direction.UP, aboveState.getLightBlock(levelReader, abovePos))
+                val i = LightEngine.getLightBlockInto(levelReader, state, pos, aboveState, abovePos, Direction.UP, aboveState.getLightBlock(levelReader, abovePos))
                 i < levelReader.maxLightLevel
             }
         }
