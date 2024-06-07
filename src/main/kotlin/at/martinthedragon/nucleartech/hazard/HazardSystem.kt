@@ -8,7 +8,7 @@ import it.unimi.dsi.fastutil.ints.IntOpenHashSet
 import net.minecraft.client.Minecraft
 import net.minecraft.network.Connection
 import net.minecraft.network.chat.Component
-import net.minecraft.network.chat.TextComponent
+import net.minecraft.network.chat.Component.literal
 import net.minecraft.network.protocol.Packet
 import net.minecraft.network.protocol.game.ClientboundSetEntityDataPacket
 import net.minecraft.network.syncher.EntityDataSerializers
@@ -73,20 +73,20 @@ object HazardSystem {
         if (hazards.isEmpty()) return
 
         val tooltipScan = mutableListOf<Component>()
-        tooltipScan += TextComponent("NTM Hazard Tooltip Scan")
+        tooltipScan += Component.literal("NTM Hazard Tooltip Scan")
         stack.item.appendHoverText(stack, player?.level, tooltipScan, flag)
         val tooltipSkip = tooltipScan.size
 
         val extraInfo = tooltip.size - tooltipSkip
         val hazardTooltipView = tooltip.subList(0, tooltipSkip)
 
-        if (tooltipScan.size > 1) hazardTooltipView += TextComponent.EMPTY
+        if (tooltipScan.size > 1) hazardTooltipView += Component.literal.EMPTY
 
         for (hazardEntry in getHazardsForStack(stack)) {
             hazardEntry.hazard.appendHoverText(stack, hazardEntry.level, hazardEntry.getMods(), player, hazardTooltipView, flag)
         }
 
-        if (extraInfo > 0) hazardTooltipView += TextComponent.EMPTY
+        if (extraInfo > 0) hazardTooltipView += Component.literal.EMPTY
     }
 
     fun register(tag: TagKey<Item>, data: HazardData) {

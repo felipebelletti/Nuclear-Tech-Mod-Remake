@@ -5,7 +5,7 @@ import net.minecraft.ResourceLocationException
 import net.minecraft.core.BlockPos
 import net.minecraft.core.NonNullList
 import net.minecraft.network.chat.Component
-import net.minecraft.network.chat.TextComponent
+import net.minecraft.network.chat.Component.literal
 import net.minecraft.network.chat.TranslatableComponent
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.InteractionResult
@@ -18,7 +18,7 @@ import net.minecraft.world.level.material.Fluids
 import net.minecraftforge.registries.ForgeRegistries
 
 class FluidIdentifierItem(properties: Properties) : AutoTooltippedItem(properties) {
-    override fun getName(stack: ItemStack): Component = TranslatableComponent(getDescriptionId(stack), getFluid(stack).let { if (it.isSame(Fluids.EMPTY)) TextComponent("N/A") else TranslatableComponent(it.attributes.translationKey) })
+    override fun getName(stack: ItemStack): Component = TranslatableComponent(getDescriptionId(stack), getFluid(stack).let { if (it.isSame(Fluids.EMPTY)) Component.literal("N/A") else TranslatableComponent(it.attributes.translationKey) })
 
     override fun fillItemCategory(tab: CreativeModeTab, items: NonNullList<ItemStack>) {
         if (allowdedIn(tab)) {

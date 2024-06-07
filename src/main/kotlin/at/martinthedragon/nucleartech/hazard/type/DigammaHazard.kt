@@ -7,7 +7,7 @@ import at.martinthedragon.nucleartech.extensions.red
 import at.martinthedragon.nucleartech.hazard.modifier.HazardModifier
 import at.martinthedragon.nucleartech.hazard.modifier.evaluateAllModifiers
 import net.minecraft.network.chat.Component
-import net.minecraft.network.chat.TextComponent
+import net.minecraft.network.chat.Component.literal
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.entity.item.ItemEntity
 import net.minecraft.world.entity.player.Player
@@ -29,7 +29,7 @@ class DigammaHazard : HazardType {
 
         with(tooltip) {
             add(LangKeys.HAZARD_DIGAMMA.red())
-            add(TextComponent("${floor(digamma * itemStack.count * 10_000F) / 10F} mDRX/s"))
+            add(Component.literal("${floor(digamma * itemStack.count * 10_000F) / 10F} mDRX/s"))
         }
     }
 }

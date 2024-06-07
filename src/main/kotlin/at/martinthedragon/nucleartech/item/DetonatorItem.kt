@@ -10,7 +10,7 @@ import at.martinthedragon.nucleartech.extensions.green
 import at.martinthedragon.nucleartech.extensions.red
 import net.minecraft.core.BlockPos
 import net.minecraft.network.chat.Component
-import net.minecraft.network.chat.TextComponent
+import net.minecraft.network.chat.Component.literal
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.InteractionResultHolder
@@ -90,7 +90,7 @@ class DetonatorItem(properties: Properties) : Item(properties) {
             val x = tag.getInt("ExplosivePosX")
             val y = tag.getInt("ExplosivePosY")
             val z = tag.getInt("ExplosivePosZ")
-            TextComponent("$x, $y, $z").gray()
+            Component.literal("$x, $y, $z").gray()
         } else LangKeys.DEVICE_POSITION_NOT_SET.darkRed()
     }
 }

@@ -13,7 +13,7 @@ import net.minecraft.client.renderer.block.model.BlockModel
 import net.minecraft.client.resources.model.ModelBakery
 import net.minecraft.core.NonNullList
 import net.minecraft.network.chat.Component
-import net.minecraft.network.chat.TextComponent
+import net.minecraft.network.chat.Component.literal
 import net.minecraft.network.chat.TranslatableComponent
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.packs.resources.ResourceManager
@@ -45,20 +45,20 @@ class ChemPlantTemplateItem(properties: Properties) : Item(properties) {
         if (level == null) return
         val recipe = getRecipeFromStack(stack, level.recipeManager) ?: return
 
-        fun formatFluid(fluidStack: FluidStack) = TextComponent("  ${fluidStack.amount}mb ").append(fluidStack.displayName).gray()
+        fun formatFluid(fluidStack: FluidStack) = Component.literal("  ${fluidStack.amount}mb ").append(fluidStack.displayName).gray()
 
         with(tooltip) {
             add(LangKeys.INFO_OUTPUTS.bold().gray())
-            for (output in recipe.resultsList) add(TextComponent("  ${output.count}x ").append(output.hoverName).gray())
+            for (output in recipe.resultsList) add(Component.literal("  ${output.count}x ").append(output.hoverName).gray())
             if (!recipe.outputFluid1.isEmpty) add(formatFluid(recipe.outputFluid1))
             if (!recipe.outputFluid2.isEmpty) add(formatFluid(recipe.outputFluid2))
             add(LangKeys.INFO_INPUTS.bold().gray())
-            for (input in recipe.ingredientsList) add(TextComponent("  ${input.requiredAmount}x ").append(input.items.first().hoverName).gray())
+            for (input in recipe.ingredientsList) add(Component.literal("  ${input.requiredAmount}x ").append(input.items.first().hoverName).gray())
             if (!recipe.inputFluid1.isEmpty) add(formatFluid(recipe.inputFluid1))
             if (!recipe.inputFluid2.isEmpty) add(formatFluid(recipe.inputFluid2))
             add(LangKeys.INFO_PRODUCTION_TIME.bold().gray())
-            add(TextComponent("  ${floor(recipe.duration / 20F * 100F) / 100F} ").append(LangKeys.WORD_SECONDS.get()).gray())
-            if (flag.isAdvanced) add(TextComponent(recipe.id.toString()).italic().blue())
+            add(Component.literal("  ${floor(recipe.duration / 20F * 100F) / 100F} ").append(LangKeys.WORD_SECONDS.get()).gray())
+            if (flag.isAdvanced) add(Component.literal(recipe.id.toString()).italic().blue())
         }
     }
 

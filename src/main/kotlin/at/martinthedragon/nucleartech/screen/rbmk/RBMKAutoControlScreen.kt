@@ -17,7 +17,7 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen
 import net.minecraft.client.renderer.GameRenderer
 import net.minecraft.client.resources.sounds.SimpleSoundInstance
 import net.minecraft.network.chat.Component
-import net.minecraft.network.chat.TextComponent
+import net.minecraft.network.chat.Component.literal
 import net.minecraft.sounds.SoundEvents
 import net.minecraft.world.entity.player.Inventory
 import java.util.function.Predicate
@@ -43,7 +43,7 @@ class RBMKAutoControlScreen(
 
         val editBoxFilter = Predicate<String> { string -> string != null && string.all { char -> char.isDigit() || char == '.' }}
         editBoxes = Array(4) {
-            EditBox(font, guiLeft + 30, guiTop + 27 + it * 11, 26, 6, TextComponent.EMPTY).apply {
+            EditBox(font, guiLeft + 30, guiTop + 27 + it * 11, 26, 6, Component.literal.EMPTY).apply {
                 setTextColor(-1)
                 setTextColorUneditable(-1)
                 setBordered(false)

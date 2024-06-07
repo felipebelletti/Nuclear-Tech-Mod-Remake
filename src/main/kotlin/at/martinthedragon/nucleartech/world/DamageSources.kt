@@ -2,7 +2,7 @@ package at.martinthedragon.nucleartech.world
 
 import at.martinthedragon.nucleartech.NuclearTech
 import net.minecraft.network.chat.Component
-import net.minecraft.network.chat.TextComponent
+import net.minecraft.network.chat.Component.literal
 import net.minecraft.world.damagesource.DamageSource
 import net.minecraft.world.entity.LivingEntity
 import kotlin.random.Random
@@ -35,6 +35,6 @@ private class MurkyAnvilDamageSource(msgID: String) : DamageSource(msgID) {
             }
         }
         obfuscatedMessage.append("§r")
-        return TextComponent(obfuscatedMessage.toString())
+        return Component.literal(obfuscatedMessage.toString())
     }
 }

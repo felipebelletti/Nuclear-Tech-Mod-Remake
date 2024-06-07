@@ -17,7 +17,7 @@ import net.minecraft.nbt.CompoundTag
 import net.minecraft.nbt.ListTag
 import net.minecraft.nbt.Tag
 import net.minecraft.network.chat.Component
-import net.minecraft.network.chat.TextComponent
+import net.minecraft.network.chat.Component.literal
 import net.minecraft.network.chat.TranslatableComponent
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.sounds.SoundEvent
@@ -268,7 +268,7 @@ class RBMKConsoleBlockEntity(pos: BlockPos, state: BlockState) : BaseMachineBloc
             Type.FUEL_POISON -> LangKeys.RBMK_SCREEN_POISON.format(displayValue)
             Type.FUEL_TEMPERATURE -> LangKeys.RBMK_SCREEN_FUEL_TEMPERATURE.format(displayValue)
             Type.ROD_EXTRACTION -> LangKeys.RBMK_SCREEN_ROD_EXTRACTION.format(displayValue)
-            else -> TextComponent.EMPTY
+            else -> Component.literal.EMPTY
         }
 
         enum class Type(val translationKey: TranslationKey) {

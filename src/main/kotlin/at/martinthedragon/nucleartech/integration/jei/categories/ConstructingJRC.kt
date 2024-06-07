@@ -14,7 +14,7 @@ import mezz.jei.api.recipe.IFocusGroup
 import mezz.jei.api.recipe.RecipeIngredientRole
 import mezz.jei.api.recipe.category.IRecipeCategory
 import net.minecraft.client.Minecraft
-import net.minecraft.network.chat.TextComponent
+import net.minecraft.network.chat.Component.literal
 
 class ConstructingJRC(guiHelper: IGuiHelper) : IRecipeCategory<AnvilConstructingRecipe> {
     private val texture = ntm("textures/gui/jei_constructing.png")
@@ -52,7 +52,7 @@ class ConstructingJRC(guiHelper: IGuiHelper) : IRecipeCategory<AnvilConstructing
                 }.addTooltipCallback { _, tooltip ->
                     val chances = recipe.getTooltipChancesForOutputAt(y * 4 + x)
                     if (chances.isEmpty()) return@addTooltipCallback
-                    if (tooltip.isNotEmpty()) tooltip.add(TextComponent.EMPTY)
+                    if (tooltip.isNotEmpty()) tooltip.add(Component.literal.EMPTY)
                     tooltip.add(LangKeys.JEI_OUTPUT_CHANCE.gold())
                     tooltip.addAll(chances)
                 }

@@ -8,7 +8,7 @@ import com.mojang.blaze3d.vertex.PoseStack
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen
 import net.minecraft.client.renderer.GameRenderer
 import net.minecraft.network.chat.Component
-import net.minecraft.network.chat.TextComponent
+import net.minecraft.network.chat.Component.literal
 import net.minecraft.world.entity.player.Inventory
 
 class BlastFurnaceScreen(
@@ -53,6 +53,6 @@ class BlastFurnaceScreen(
         super.renderTooltip(matrixStack, mouseX, mouseY)
 
         if (isHovering(44, 18, 16, 52, mouseX.toDouble(), mouseY.toDouble()))
-            renderComponentTooltip(matrixStack, listOf(TextComponent("${menu.blockEntity.litTime}/${BlastFurnaceBlockEntity.MAX_BURN_TIME}")), mouseX, mouseY, font)
+            renderComponentTooltip(matrixStack, listOf(Component.literal("${menu.blockEntity.litTime}/${BlastFurnaceBlockEntity.MAX_BURN_TIME}")), mouseX, mouseY, font)
     }
 }

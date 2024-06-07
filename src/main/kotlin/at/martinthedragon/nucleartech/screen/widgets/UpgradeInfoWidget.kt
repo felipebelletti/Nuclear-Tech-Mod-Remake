@@ -11,14 +11,14 @@ import net.minecraft.client.gui.components.AbstractWidget
 import net.minecraft.client.gui.narration.NarrationElementOutput
 import net.minecraft.client.renderer.GameRenderer
 import net.minecraft.network.chat.Component
-import net.minecraft.network.chat.TextComponent
+import net.minecraft.network.chat.Component.literal
 import net.minecraft.world.level.block.entity.BlockEntity
 
 class UpgradeInfoWidget<T>(
     x: Int, y: Int, xSize: Int, ySize: Int,
     val menu: NTechContainerMenu<T>,
     val renderTooltipFunc: (PoseStack, List<Component>, Int, Int) -> Unit
-) : AbstractWidget(x, y, xSize, ySize, TextComponent.EMPTY)
+) : AbstractWidget(x, y, xSize, ySize, Component.literal.EMPTY)
     where T : BlockEntity,
           T : UpgradeableMachine
 {
@@ -41,8 +41,8 @@ class UpgradeInfoWidget<T>(
         val tooltips = buildList<Component> {
             add(LangKeys.UPGRADE_INFO_ACCEPTED_UPGRADES.get())
             for (upgrade in menu.blockEntity.getSupportedUpgrades()) {
-                if (upgrade.tier == 0) add(TextComponent(" • ").gray().append(upgrade.getName()))
-                else add(TextComponent(" • ").gray().append(upgrade.getName().append(": ")).append(LangKeys.UPGRADE_INFO_STACKS_TO.format(upgrade.tier).gray()))
+                if (upgrade.tier == 0) add(Component.literal(" • ").gray().append(upgrade.getName()))
+                else add(Component.literal(" • ").gray().append(upgrade.getName().append(": ")).append(LangKeys.UPGRADE_INFO_STACKS_TO.format(upgrade.tier).gray()))
             }
         }
         renderTooltipFunc(matrix, tooltips, mouseX, mouseY)

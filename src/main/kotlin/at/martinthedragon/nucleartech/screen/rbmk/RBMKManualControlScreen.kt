@@ -9,7 +9,7 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen
 import net.minecraft.client.renderer.GameRenderer
 import net.minecraft.client.resources.sounds.SimpleSoundInstance
 import net.minecraft.network.chat.Component
-import net.minecraft.network.chat.TextComponent
+import net.minecraft.network.chat.Component.literal
 import net.minecraft.sounds.SoundEvents
 import net.minecraft.world.entity.player.Inventory
 
@@ -67,6 +67,6 @@ class RBMKManualControlScreen(
     override fun renderTooltip(matrix: PoseStack, mouseX: Int, mouseY: Int) {
         super.renderTooltip(matrix, mouseX, mouseY)
         if (isHovering(71, 29, 16, 56, mouseX.toDouble(), mouseY.toDouble()))
-            renderComponentTooltip(matrix, listOf(TextComponent("${(menu.blockEntity.rodLevel * 100).toInt()}%")), mouseX, mouseY, font)
+            renderComponentTooltip(matrix, listOf(Component.literal("${(menu.blockEntity.rodLevel * 100).toInt()}%")), mouseX, mouseY, font)
     }
 }

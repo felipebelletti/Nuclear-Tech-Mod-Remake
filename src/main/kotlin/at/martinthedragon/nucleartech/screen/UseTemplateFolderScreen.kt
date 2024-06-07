@@ -19,7 +19,7 @@ import net.minecraft.client.gui.components.EditBox
 import net.minecraft.client.gui.screens.Screen
 import net.minecraft.client.renderer.GameRenderer
 import net.minecraft.client.searchtree.SearchRegistry
-import net.minecraft.network.chat.TextComponent
+import net.minecraft.network.chat.Component.literal
 import net.minecraft.network.chat.TranslatableComponent
 import net.minecraft.world.item.ItemStack
 import net.minecraftforge.registries.ForgeRegistries
@@ -160,7 +160,7 @@ class UseTemplateFolderScreen : Screen(NTechItems.machineTemplateFolder.get().de
             )
 
         // page number
-        GuiComponent.drawCenteredString(matrixStack, font, TextComponent("$currentPage / $pagesCount"), width / 2, (height - GUI_HEIGHT) / 2 + 10, 0xFFFFFF)
+        GuiComponent.drawCenteredString(matrixStack, font, Component.literal("$currentPage / $pagesCount"), width / 2, (height - GUI_HEIGHT) / 2 + 10, 0xFFFFFF)
 
         // search bar
         if (searchBox.isFocused) {
@@ -226,7 +226,7 @@ class UseTemplateFolderScreen : Screen(NTechItems.machineTemplateFolder.get().de
     }
 
     class ChangePageButton(x: Int, y: Int, val isForward: Boolean, onPress: OnPress) :
-        Button(x, y, 18, 18, TextComponent.EMPTY, onPress) {
+        Button(x, y, 18, 18, Component.literal.EMPTY, onPress) {
 
         override fun renderButton(matrixStack: PoseStack, mouseX: Int, mouseY: Int, partialTicks: Float) {
             RenderSystem.setShader(GameRenderer::getPositionTexShader)
@@ -242,7 +242,7 @@ class UseTemplateFolderScreen : Screen(NTechItems.machineTemplateFolder.get().de
 
     override fun isPauseScreen(): Boolean = false
 
-    inner class CraftButton(x: Int, y: Int, val index: Int) : Button(x, y, 18, 18, TextComponent.EMPTY, { craftRecipe(index) }) {
+    inner class CraftButton(x: Int, y: Int, val index: Int) : Button(x, y, 18, 18, Component.literal.EMPTY, { craftRecipe(index) }) {
         override fun renderButton(matrixStack: PoseStack, mouseX: Int, mouseY: Int, partialTicks: Float) {
             RenderSystem.setShader(GameRenderer::getPositionTexShader)
             RenderSystem.setShaderColor(1f, 1f, 1f, 1f)

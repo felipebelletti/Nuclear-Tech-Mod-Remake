@@ -13,7 +13,7 @@ import com.mojang.blaze3d.vertex.PoseStack
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen
 import net.minecraft.client.renderer.GameRenderer
 import net.minecraft.network.chat.Component
-import net.minecraft.network.chat.TextComponent
+import net.minecraft.network.chat.Component.literal
 import net.minecraft.world.entity.player.Inventory
 
 class AssemblerScreen(
@@ -61,7 +61,7 @@ class AssemblerScreen(
             renderComponentTooltip(matrix,
                 listOf(
                     LangKeys.ENERGY.get(),
-                    TextComponent("${EnergyUnit.UnitType.HBM.getPreferredUnit(menu.blockEntity.energy).format(menu.blockEntity.energy, false)}/${EnergyUnit.UnitType.HBM.getPreferredUnit(AssemblerBlockEntity.MAX_ENERGY).format(AssemblerBlockEntity.MAX_ENERGY)}")
+                    Component.literal("${EnergyUnit.UnitType.HBM.getPreferredUnit(menu.blockEntity.energy).format(menu.blockEntity.energy, false)}/${EnergyUnit.UnitType.HBM.getPreferredUnit(AssemblerBlockEntity.MAX_ENERGY).format(AssemblerBlockEntity.MAX_ENERGY)}")
                 ), mouseX, mouseY, font
             )
     }

@@ -11,7 +11,7 @@ import com.mojang.blaze3d.vertex.PoseStack
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen
 import net.minecraft.client.renderer.GameRenderer
 import net.minecraft.network.chat.Component
-import net.minecraft.network.chat.TextComponent
+import net.minecraft.network.chat.Component.literal
 import net.minecraft.world.entity.player.Inventory
 import net.minecraft.world.level.material.Fluids
 
@@ -58,7 +58,7 @@ class CombustionGeneratorScreen(
         super.renderTooltip(matrixStack, mouseX, mouseY)
 
         if (isHovering(80, 35, 16, 16, mouseX.toDouble(), mouseY.toDouble()))
-            renderComponentTooltip(matrixStack, listOf(TextComponent("${menu.blockEntity.litTime / 20}s")), mouseX, mouseY, font)
+            renderComponentTooltip(matrixStack, listOf(Component.literal("${menu.blockEntity.litTime / 20}s")), mouseX, mouseY, font)
         tooltipFluidTank(matrixStack, menu.blockEntity.tank, 8, 17, 16, 52, mouseX, mouseY)
         tooltipEnergyStorage(matrixStack, menu.blockEntity.energyStorage, 152, 17, 16, 52, mouseX, mouseY)
     }

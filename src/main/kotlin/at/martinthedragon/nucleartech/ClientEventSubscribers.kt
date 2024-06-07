@@ -78,18 +78,18 @@ object ClientEventSubscribers {
             VersionChecker.Status.PENDING, VersionChecker.Status.FAILED, VersionChecker.Status.UP_TO_DATE, null -> null
             VersionChecker.Status.BETA, VersionChecker.Status.AHEAD -> {
                 val cuttingEdgeMessage = if (NuclearTech.isSnapshot) LangKeys.VERSION_CHECKER_BLEEDING_EDGE.red() else LangKeys.VERSION_CHECKER_CUTTING_EDGE.gold()
-                cuttingEdgeMessage.append(TextComponent(" ($currentVersion)").white())
+                cuttingEdgeMessage.append(Component.literal(" ($currentVersion)").white())
             }
             VersionChecker.Status.OUTDATED, VersionChecker.Status.BETA_OUTDATED -> {
                 LangKeys.VERSION_CHECKER_UPDATE.yellow()
-                    .append(TextComponent(" ($currentVersion -> ").white())
-                    .append(TextComponent("${versionCheckResult.target}").blue().underline().withStyle(Style.EMPTY
+                    .append(Component.literal(" ($currentVersion -> ").white())
+                    .append(Component.literal("${versionCheckResult.target}").blue().underline().withStyle(Style.EMPTY
                         .withHoverEvent(HoverEvent(HoverEvent.Action.SHOW_TEXT, LangKeys.VERSION_CHECKER_VIEW_RELEASES.gray()))
                         .withClickEvent(ClickEvent(ClickEvent.Action.OPEN_URL, versionCheckResult.url))))
-                    .append(TextComponent(")").white())
+                    .append(Component.literal(")").white())
                     .append("\n")
                     .run { if (versionCheckResult.changes.isNotEmpty()) append(LangKeys.VERSION_CHECKER_CHANGES_LIST.yellow()) else this }
-                    .run { var next = this; for (change in versionCheckResult.changes.values.flatMap { it.split("\r\n", "\n", "\r") }) next = next.append(TextComponent('\n' + change.prependIndent()).white()); next }
+                    .run { var next = this; for (change in versionCheckResult.changes.values.flatMap { it.split("\r\n", "\n", "\r") }) next = next.append(Component.literal('\n' + change.prependIndent()).white()); next }
             }
         }
     }

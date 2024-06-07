@@ -4,7 +4,7 @@ import net.minecraft.ChatFormatting
 import net.minecraft.network.chat.BaseComponent
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.MutableComponent
-import net.minecraft.network.chat.TextComponent
+import net.minecraft.network.chat.Component.literal
 import java.util.function.Supplier
 
 // Because platform types
@@ -58,4 +58,4 @@ fun Supplier<out MutableComponent>.reset() = get().reset()
 fun Supplier<out BaseComponent>.append(component: Component): MutableComponent = get().append(component)
 fun BaseComponent.append(component: Supplier<out Component>): MutableComponent = append(component.get())
 
-fun Component.prependIntent(indent: String = "  ") = TextComponent(indent).append(this)
+fun Component.prependIntent(indent: String = "  ") = Component.literal(indent).append(this)

@@ -26,7 +26,7 @@ import net.minecraft.client.searchtree.SearchRegistry
 import net.minecraft.client.sounds.SoundManager
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.MutableComponent
-import net.minecraft.network.chat.TextComponent
+import net.minecraft.network.chat.Component.literal
 import net.minecraft.network.chat.TranslatableComponent
 import net.minecraft.world.entity.player.Inventory
 import kotlin.math.ceil
@@ -274,11 +274,11 @@ class AnvilScreen(anvilMenu: AnvilMenu, playerInventory: Inventory, title: Compo
         val (available, missing) = partitionIngredients(selectedRecipe.ingredientsList)
         return buildList {
             add(LangKeys.INFO_INPUTS.yellow())
-            addAll(missing.map { TextComponent("> ").append(it.red()).red() })
-            addAll(available.map { TextComponent("> ").append(it.green()).green() })
-            add(TextComponent.EMPTY)
+            addAll(missing.map { Component.literal("> ").append(it.red()).red() })
+            addAll(available.map { Component.literal("> ").append(it.green()).green() })
+            add(Component.literal.EMPTY)
             add(LangKeys.INFO_OUTPUTS.yellow())
-            addAll(selectedRecipe.results.map { TextComponent("> ${it.stack.count}x ").append(it.stack.hoverName).apply { if (it.chance != 1F) append(" (${it.chance * 100}%)") }})
+            addAll(selectedRecipe.results.map { Component.literal("> ${it.stack.count}x ").append(it.stack.hoverName).apply { if (it.chance != 1F) append(" (${it.chance * 100}%)") }})
         }
     }
 
@@ -294,11 +294,11 @@ class AnvilScreen(anvilMenu: AnvilMenu, playerInventory: Inventory, title: Compo
             }
             requiredAmountLeft <= 0
         }
-        return available.map { TextComponent("${it.requiredAmount}x ").append(it.items[0].hoverName) } to
-                missing.map { TextComponent("${it.requiredAmount}x ").append(it.items[0].hoverName) }
+        return available.map { Component.literal("${it.requiredAmount}x ").append(it.items[0].hoverName) } to
+                missing.map { Component.literal("${it.requiredAmount}x ").append(it.items[0].hoverName) }
     }
 
-    private class ChangePageButton(x: Int, y: Int, val isForward: Boolean, onPress: OnPress) : Button(x, y, 9, 36, TextComponent.EMPTY, onPress) {
+    private class ChangePageButton(x: Int, y: Int, val isForward: Boolean, onPress: OnPress) : Button(x, y, 9, 36, Component.literal.EMPTY, onPress) {
         override fun renderButton(matrix: PoseStack, mouseX: Int, mouseY: Int, partialTicks: Float) {
             if (!isHoveredOrFocused) return
             RenderSystem.setShader(GameRenderer::getPositionTexShader)
@@ -309,7 +309,7 @@ class AnvilScreen(anvilMenu: AnvilMenu, playerInventory: Inventory, title: Compo
         }
     }
 
-    private inner class RecipeButton(x: Int, y: Int, val index: Int) : Button(x, y, 18, 18, TextComponent.EMPTY, { setSelection(index, x, y) }) {
+    private inner class RecipeButton(x: Int, y: Int, val index: Int) : Button(x, y, 18, 18, Component.literal.EMPTY, { setSelection(index, x, y) }) {
         override fun renderButton(matrix: PoseStack, mouseX: Int, mouseY: Int, partialTicks: Float) {
             RenderSystem.disableDepthTest()
             RenderSystem.setShader(GameRenderer::getPositionTexShader)
@@ -327,7 +327,7 @@ class AnvilScreen(anvilMenu: AnvilMenu, playerInventory: Inventory, title: Compo
         }
     }
 
-    private inner class ConstructButton(x: Int, y: Int) : Button(x, y, 18, 18, TextComponent.EMPTY, { sendConstructPacket() }){
+    private inner class ConstructButton(x: Int, y: Int) : Button(x, y, 18, 18, Component.literal.EMPTY, { sendConstructPacket() }){
         override fun renderButton(matrix: PoseStack, mouseX: Int, mouseY: Int, partialTicks: Float) {
             if (!isHoveredOrFocused || !canConstructSelectedRecipe()) return
             RenderSystem.setShader(GameRenderer::getPositionTexShader)

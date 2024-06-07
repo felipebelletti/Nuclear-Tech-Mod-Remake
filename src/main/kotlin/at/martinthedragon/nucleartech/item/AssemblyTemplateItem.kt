@@ -13,7 +13,7 @@ import at.martinthedragon.nucleartech.rendering.CustomBEWLR
 import net.minecraft.client.Minecraft
 import net.minecraft.core.NonNullList
 import net.minecraft.network.chat.Component
-import net.minecraft.network.chat.TextComponent
+import net.minecraft.network.chat.Component.literal
 import net.minecraft.network.chat.TranslatableComponent
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.item.CreativeModeTab
@@ -45,14 +45,14 @@ class AssemblyTemplateItem(properties: Properties) : Item(properties) {
 
         with(tooltips) {
             add(LangKeys.INFO_OUTPUT.bold().gray())
-            add(TextComponent("${resultItem.count}x ".prependIndent("  ")).append(resultItem.hoverName).gray())
+            add(Component.literal("${resultItem.count}x ".prependIndent("  ")).append(resultItem.hoverName).gray())
             add(LangKeys.INFO_INPUTS.bold().gray())
-            for (input in recipe.ingredientsList) add(TextComponent("${input.requiredAmount}x ".prependIndent("  ")).append(input.items.first().hoverName).gray())
+            for (input in recipe.ingredientsList) add(Component.literal("${input.requiredAmount}x ".prependIndent("  ")).append(input.items.first().hoverName).gray())
             add(LangKeys.INFO_PRODUCTION_TIME.bold().gray())
-            add(TextComponent("${floor(recipe.duration / 20F * 100F) / 100F} ".prependIndent("  ")).append(LangKeys.WORD_SECONDS.get()).gray())
+            add(Component.literal("${floor(recipe.duration / 20F * 100F) / 100F} ".prependIndent("  ")).append(LangKeys.WORD_SECONDS.get()).gray())
         }
 
-        if (flag.isAdvanced) tooltips += TextComponent(recipe.id.toString()).italic().blue()
+        if (flag.isAdvanced) tooltips += Component.literal(recipe.id.toString()).italic().blue()
     }
 
     override fun initializeClient(consumer: Consumer<IItemRenderProperties>) {

@@ -7,7 +7,7 @@ import at.martinthedragon.nucleartech.hazard.EntityContaminationEffects
 import at.martinthedragon.nucleartech.hazard.modifier.HazardModifier
 import at.martinthedragon.nucleartech.hazard.modifier.evaluateAllModifiers
 import net.minecraft.network.chat.Component
-import net.minecraft.network.chat.TextComponent
+import net.minecraft.network.chat.Component.literal
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.entity.item.ItemEntity
 import net.minecraft.world.entity.player.Player
@@ -34,7 +34,7 @@ class RadiationHazard : HazardType {
 
         with(tooltip) {
             add(LangKeys.HAZARD_RADIATON.green())
-            add(TextComponent("${floor(radiation * itemStack.count * 1000F) / 1000F} RAD/s").yellow())
+            add(Component.literal("${floor(radiation * itemStack.count * 1000F) / 1000F} RAD/s").yellow())
         }
     }
 }

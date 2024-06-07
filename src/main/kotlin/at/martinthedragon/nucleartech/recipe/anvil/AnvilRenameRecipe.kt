@@ -1,7 +1,7 @@
 package at.martinthedragon.nucleartech.recipe.anvil
 
 import at.martinthedragon.nucleartech.recipe.RecipeSerializers
-import net.minecraft.network.chat.TextComponent
+import net.minecraft.network.chat.Component.literal
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.Container
 import net.minecraft.world.item.ItemStack
@@ -19,7 +19,7 @@ class AnvilRenameRecipe(recipeID: ResourceLocation) : SpecialAnvilRecipe(recipeI
     override fun assemble(container: Container): ItemStack {
         val output = container.getItem(0).copy()
         val name = container.getItem(1).hoverName.string.replace("\\&", "§")
-        output.hoverName = TextComponent("§r$name")
+        output.hoverName = Component.literal("§r$name")
         return output
     }
 

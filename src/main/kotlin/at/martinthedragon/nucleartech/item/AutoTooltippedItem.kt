@@ -5,7 +5,7 @@ import at.martinthedragon.nucleartech.extensions.gray
 import at.martinthedragon.nucleartech.extensions.red
 import net.minecraft.client.resources.language.I18n
 import net.minecraft.network.chat.Component
-import net.minecraft.network.chat.TextComponent
+import net.minecraft.network.chat.Component.literal
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.TooltipFlag
@@ -29,11 +29,11 @@ fun autoTooltip(stack: ItemStack, tooltip: MutableList<Component>, ignoreMissing
     val brokenPolaroid = "${baseString}11"
     if (NuclearTech.polaroidBroken && I18n.exists(brokenPolaroid)) {
         for (brokenPolaroidText in I18n.get(brokenPolaroid).split('\n'))
-            tooltip.add(TextComponent(brokenPolaroidText).gray())
+            tooltip.add(Component.literal(brokenPolaroidText).gray())
     } else {
         if (exists) for (translation in translations)
-            tooltip.add(TextComponent(translation).gray())
-        else if (!ignoreMissing) tooltip.add(TextComponent("Missing Translation").red())
+            tooltip.add(Component.literal(translation).gray())
+        else if (!ignoreMissing) tooltip.add(Component.literal("Missing Translation").red())
     }
 
     return exists

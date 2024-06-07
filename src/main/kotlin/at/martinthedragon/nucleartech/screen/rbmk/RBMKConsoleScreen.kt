@@ -23,7 +23,7 @@ import net.minecraft.client.renderer.GameRenderer
 import net.minecraft.client.resources.sounds.SimpleSoundInstance
 import net.minecraft.nbt.Tag
 import net.minecraft.network.chat.Component
-import net.minecraft.network.chat.TextComponent
+import net.minecraft.network.chat.Component.literal
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.entity.player.Inventory
 import net.minecraft.world.level.block.Rotation
@@ -55,7 +55,7 @@ class RBMKConsoleScreen(
 
         minecraft!!.keyboardHandler.setSendRepeatsToGui(true)
 
-        editBox = EditBox(font, guiLeft + 9, guiTop + 84, 35, 9, TextComponent.EMPTY).apply {
+        editBox = EditBox(font, guiLeft + 9, guiTop + 84, 35, 9, Component.literal.EMPTY).apply {
             setTextColor(0x00FF00)
             setTextColorUneditable(0x008000)
             setBordered(false)
@@ -307,7 +307,7 @@ class RBMKConsoleScreen(
             if (index in console.columns.indices) {
                 val column = console.columns[index]
                 if (column != null) {
-                    renderComponentTooltip(matrix, listOf(TextComponent(column.type.name)) + column.getFormattedStats(), mouseX, mouseY, font)
+                    renderComponentTooltip(matrix, listOf(Component.literal(column.type.name)) + column.getFormattedStats(), mouseX, mouseY, font)
                 }
             }
         }

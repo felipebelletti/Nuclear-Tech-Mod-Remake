@@ -17,7 +17,7 @@ import net.minecraft.client.gui.screens.Screen
 import net.minecraft.client.renderer.GameRenderer
 import net.minecraft.commands.arguments.coordinates.Vec3Argument
 import net.minecraft.network.chat.Component
-import net.minecraft.network.chat.TextComponent
+import net.minecraft.network.chat.Component.literal
 
 class UseCreativeNuclearExplosionSpawnerScreen : Screen(NTechItems.creativeNuclearExplosionSpawner.get().description) {
     private lateinit var strengthEdit: EditBox
@@ -126,7 +126,7 @@ class UseCreativeNuclearExplosionSpawnerScreen : Screen(NTechItems.creativeNucle
         val position = try {
             Vec3Argument.vec3().parse(StringReader(positionEdit.value)).getPosition(commandSource)
         } catch (e: CommandSyntaxException) {
-            error = TextComponent(e.localizedMessage)
+            error = Component.literal(e.localizedMessage)
             return
         }
         NuclearPacketHandler.INSTANCE.sendToServer(SpawnNuclearExplosionMessage(strength, muted, fallout, extraFallout, position))

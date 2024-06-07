@@ -11,7 +11,7 @@ import net.minecraft.core.BlockPos
 import net.minecraft.core.NonNullList
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.chat.Component
-import net.minecraft.network.chat.TextComponent
+import net.minecraft.network.chat.Component.literal
 import net.minecraft.world.entity.player.Inventory
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
@@ -37,7 +37,7 @@ abstract class AbstractCondenserBlockEntity(type: BlockEntityType<out AbstractCo
     override fun createMenu(windowID: Int, inventory: Inventory) =
         throw UnsupportedOperationException("Condensers have no menu")
 
-    override val defaultName: Component = TextComponent.EMPTY
+    override val defaultName: Component = Component.literal.EMPTY
 
     override fun isItemValid(slot: Int, stack: ItemStack) = false
     override fun trackContainerMenu(menu: NTechContainerMenu<*>) {}

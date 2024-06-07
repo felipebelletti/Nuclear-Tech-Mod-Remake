@@ -20,7 +20,7 @@ class SirenTrackItem(val soundSupplier: Supplier<SoundEvent>, val range: Int, va
     val trackType: Component = (if (loop) LangKeys.SIREN_TRACK_LOOP.get() else LangKeys.SIREN_TRACK_ONCE.get()).withStyle(Style.EMPTY.withColor(TextColor.fromRgb(color)))
     val trackRange: Component = LangKeys.SIREN_TRACK_RANGE.format(range).withStyle(Style.EMPTY.withColor(TextColor.fromRgb(color)))
 
-    override fun getDescription(): Component = LangKeys.SIREN_TRACK_SIREN_TRACK.append(TextComponent(" - ")).append(TranslatableComponent(descriptionId))
+    override fun getDescription(): Component = LangKeys.SIREN_TRACK_SIREN_TRACK.append(Component.literal(" - ")).append(TranslatableComponent(descriptionId))
 
     override fun getName(stack: ItemStack) = description
 

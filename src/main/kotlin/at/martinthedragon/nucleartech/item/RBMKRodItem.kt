@@ -5,7 +5,7 @@ import at.martinthedragon.nucleartech.TranslationKey
 import at.martinthedragon.nucleartech.block.entity.rbmk.RBMKFluxReceiver
 import at.martinthedragon.nucleartech.extensions.*
 import net.minecraft.network.chat.Component
-import net.minecraft.network.chat.TextComponent
+import net.minecraft.network.chat.Component.literal
 import net.minecraft.network.chat.TranslatableComponent
 import net.minecraft.util.Mth
 import net.minecraft.world.item.Item
@@ -102,7 +102,7 @@ class RBMKRodItem(
     fun xenonBurnFunc(flux: Double) = (flux * flux) / xenonBurn
 
     fun getFuncDescription(stack: ItemStack): Component {
-        if (burnFunc == BurnFunction.PASSIVE) return TextComponent(selfRate.toString()).red()
+        if (burnFunc == BurnFunction.PASSIVE) return Component.literal(selfRate.toString()).red()
 
         val function = when (burnFunc) {
             BurnFunction.LOGARITHMIC -> "log10(%1\$s + 1) * 0.5 * %2\$s"
@@ -120,12 +120,12 @@ class RBMKRodItem(
 
         if (enrichment < 1) {
             enrichment = reactivityModByEnrichment(enrichment)
-            val reactivity = TextComponent("${(this.reactivity * enrichment * 1000.0).toInt() / 1000.0}").yellow()
-            val enrichmentEach = TextComponent(" (${(enrichment * 1000.0).toInt() / 10.0}%)").gold()
-            return TranslatableComponent(function, if (selfRate > 0) TextComponent("(x").append(TextComponent(" + $selfRate").red()).append(")") else "x", reactivity).white().append(enrichmentEach)
+            val reactivity = Component.literal("${(this.reactivity * enrichment * 1000.0).toInt() / 1000.0}").yellow()
+            val enrichmentEach = Component.literal(" (${(enrichment * 1000.0).toInt() / 10.0}%)").gold()
+            return TranslatableComponent(function, if (selfRate > 0) Component.literal("(x").append(Component.literal(" + $selfRate").red()).append(")") else "x", reactivity).white().append(enrichmentEach)
         }
 
-        return TranslatableComponent(function, if (selfRate > 0) TextComponent("(x").append(TextComponent(" + $selfRate").red()).append(")") else "x", reactivity).white()
+        return TranslatableComponent(function, if (selfRate > 0) Component.literal("(x").append(Component.literal(" + $selfRate").red()).append(")") else "x", reactivity).white()
     }
 
     override fun isBarVisible(stack: ItemStack) = getBarWidth(stack) < 13
@@ -151,8 +151,8 @@ class RBMKRodItem(
             add(LangKeys.RBMK_ROD_SPLITS_INTO.format(releaseType.displayName).blue())
             add(LangKeys.RBMK_ROD_FLUX_FUNC.format(getFuncDescription(stack)).yellow())
             add(LangKeys.RBMK_ROD_FUNC_TYPE.format(burnFunc.displayName).yellow())
-            add(LangKeys.RBMK_ROD_XENON_GEN.format(TextComponent("x * $xenonGen").white()).yellow())
-            add(LangKeys.RBMK_ROD_XENON_BURN.format(TextComponent("x² * $xenonBurn").white()).yellow())
+            add(LangKeys.RBMK_ROD_XENON_GEN.format(Component.literal("x * $xenonGen").white()).yellow())
+            add(LangKeys.RBMK_ROD_XENON_BURN.format(Component.literal("x² * $xenonBurn").white()).yellow())
             add(LangKeys.RBMK_ROD_HEAT.format("$heat°C").gold())
             add(LangKeys.RBMK_ROD_DIFFUSION.format("$diffusion½").gold())
             add(LangKeys.RBMK_ROD_HEAT_HULL.format((getHullHeat(stack) * 10.0).toInt() / 10.0).red())

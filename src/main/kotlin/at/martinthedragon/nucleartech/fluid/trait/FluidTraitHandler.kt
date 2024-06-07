@@ -6,7 +6,7 @@ import com.mojang.datafixers.util.Either
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.screens.Screen
 import net.minecraft.network.chat.Component
-import net.minecraft.network.chat.TextComponent
+import net.minecraft.network.chat.Component.literal
 import net.minecraft.network.chat.TranslatableComponent
 import net.minecraft.world.item.TooltipFlag
 import net.minecraft.world.level.material.Fluids
@@ -27,7 +27,7 @@ object FluidTraitHandler {
                 collectTooltip(fluid, tooltip)
 
             if (event.tooltipElements.size > 1 && tooltip.isNotEmpty()) // if there are already other tooltips, add some space
-                tooltip.add(0, TextComponent.EMPTY)
+                tooltip.add(0, Component.literal.EMPTY)
 
             event.tooltipElements.addAll(tooltip.map { Either.left(it) })
         } else { // if there's no item stack, try to understand whether and what fluid we have as good as we can
@@ -42,7 +42,7 @@ object FluidTraitHandler {
                 val tooltip = mutableListOf<Component>()
                 collectTooltip(fakeFluidStack, tooltip)
                 if (!changed && event.tooltipElements.size > 1 && tooltip.isNotEmpty())
-                    tooltip.add(0, TextComponent.EMPTY)
+                    tooltip.add(0, Component.literal.EMPTY)
 
                 changed = event.tooltipElements.addAll(tooltip.map { Either.left(it) })
             }
@@ -60,7 +60,7 @@ object FluidTraitHandler {
             trait.appendHoverText(level, fluid, tooltip, flag)
         }
         if (!flag.isAdvanced && traits.any { it.trait.isTooltipFlagReactive })
-            tooltip += LangKeys.INFO_HOLD_KEY_FOR_INFO.format(TextComponent("Shift").yellow().italic()).darkGray().italic()
+            tooltip += LangKeys.INFO_HOLD_KEY_FOR_INFO.format(Component.literal("Shift").yellow().italic()).darkGray().italic()
     }
 
     private fun flattenArgs(arg: Any, passOn: MutableList<String> = mutableListOf()): Collection<String> {

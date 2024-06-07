@@ -12,7 +12,7 @@ import com.google.gson.JsonSyntaxException
 import net.minecraft.core.NonNullList
 import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.network.chat.Component
-import net.minecraft.network.chat.TextComponent
+import net.minecraft.network.chat.Component.literal
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.util.GsonHelper
 import net.minecraft.world.Container
@@ -59,7 +59,7 @@ class AnvilConstructingRecipe(
         val stack = collapsedResults[index]
         val matching = results.filter { ItemStack.isSameItemSameTags(it.stack, stack) }
         if (matching.all { it.chance == 1F }) return emptyList()
-        return matching.map { TextComponent("${it.stack.count}x ${it.chance * 100}%") }
+        return matching.map { Component.literal("${it.stack.count}x ${it.chance * 100}%") }
     }
 
     data class ConstructingResult(val stack: ItemStack, val chance: Float = 1F) {

@@ -9,7 +9,7 @@ import at.martinthedragon.nucleartech.math.getPreferredUnit
 import com.google.gson.JsonObject
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.Style
-import net.minecraft.network.chat.TextComponent
+import net.minecraft.network.chat.Component.literal
 import net.minecraft.util.GsonHelper
 import net.minecraft.world.item.TooltipFlag
 import net.minecraft.world.level.BlockGetter
@@ -25,7 +25,7 @@ class FlammableFluidTrait(styleModifier: Style) : FluidTraitImpl(styleModifier) 
         if (flag.isAdvanced) {
             val energy = getHeatEnergy(data)
             if (energy > 0) {
-                tooltip += LangKeys.FLUID_TRAIT_ENERGY_INFO.format(TextComponent(HeatUnit.UnitType.HBM.getPreferredUnit(energy).format(energy)).red()).withStyle(styleModifier)
+                tooltip += LangKeys.FLUID_TRAIT_ENERGY_INFO.format(Component.literal(HeatUnit.UnitType.HBM.getPreferredUnit(energy).format(energy)).red()).withStyle(styleModifier)
             }
         }
     }
