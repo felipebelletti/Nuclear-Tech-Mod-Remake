@@ -48,15 +48,15 @@ class ChemPlantTemplateItem(properties: Properties) : Item(properties) {
         fun formatFluid(fluidStack: FluidStack) = Component.literal("  ${fluidStack.amount}mb ").append(fluidStack.displayName).gray()
 
         with(tooltip) {
-            add(LangKeys.INFO_OUTPUTS.bold().gray())
+            add(LangKeys.INFO_OUTPUTS.get().bold().gray())
             for (output in recipe.resultsList) add(Component.literal("  ${output.count}x ").append(output.hoverName).gray())
             if (!recipe.outputFluid1.isEmpty) add(formatFluid(recipe.outputFluid1))
             if (!recipe.outputFluid2.isEmpty) add(formatFluid(recipe.outputFluid2))
-            add(LangKeys.INFO_INPUTS.bold().gray())
+            add(LangKeys.INFO_INPUTS.get().bold().gray())
             for (input in recipe.ingredientsList) add(Component.literal("  ${input.requiredAmount}x ").append(input.items.first().hoverName).gray())
             if (!recipe.inputFluid1.isEmpty) add(formatFluid(recipe.inputFluid1))
             if (!recipe.inputFluid2.isEmpty) add(formatFluid(recipe.inputFluid2))
-            add(LangKeys.INFO_PRODUCTION_TIME.bold().gray())
+            add(LangKeys.INFO_PRODUCTION_TIME.get().bold().gray())
             add(Component.literal("  ${floor(recipe.duration / 20F * 100F) / 100F} ").append(LangKeys.WORD_SECONDS.get()).gray())
             if (flag.isAdvanced) add(Component.literal(recipe.id.toString()).italic().blue())
         }

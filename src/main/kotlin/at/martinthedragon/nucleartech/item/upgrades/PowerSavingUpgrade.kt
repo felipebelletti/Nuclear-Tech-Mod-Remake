@@ -6,7 +6,7 @@ import at.martinthedragon.nucleartech.block.entity.UpgradeableMachine
 import at.martinthedragon.nucleartech.extensions.darkBlue
 
 class PowerSavingUpgrade(override val tier: Int) : MachineUpgradeItem.UpgradeEffect<PowerSavingUpgradeableMachine> {
-    override fun getName() = LangKeys.UPGRADE_NAME_POWER_SAVING.darkBlue()
+    override fun getName() = LangKeys.UPGRADE_NAME_POWER_SAVING.get().darkBlue()
 
     override fun isCompatibleWith(machine: UpgradeableMachine) = machine is PowerSavingUpgradeableMachine
 

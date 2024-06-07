@@ -27,6 +27,6 @@ class CoalHazard : HazardType {
     override fun tickDropped(itemEntity: ItemEntity, level: Float) {}
 
     override fun appendHoverText(itemStack: ItemStack, level: Float, modifiers: List<HazardModifier>, player: Player?, tooltip: MutableList<Component>, flag: TooltipFlag) {
-        tooltip += LangKeys.HAZARD_COAL.darkGray()
+        tooltip += LangKeys.HAZARD_COAL.get().darkGray()
     }
 }

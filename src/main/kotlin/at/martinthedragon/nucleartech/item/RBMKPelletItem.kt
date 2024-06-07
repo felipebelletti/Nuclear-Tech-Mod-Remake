@@ -39,19 +39,19 @@ open class RBMKPelletItem(properties: Properties, val fullName: TranslationKey, 
     override fun appendHoverText(stack: ItemStack, level: Level?, tooltip: MutableList<Component>, flag: TooltipFlag) {
         with(tooltip) {
             add(fullName.italic().gray())
-            add(LangKeys.RBMK_PELLET_RECYCLE.italic().darkGray())
+            add(LangKeys.RBMK_PELLET_RECYCLE.get().italic().darkGray())
 
             when (getDepletion(stack)) {
-                0 -> add(LangKeys.RBMK_PELLET_DEPLETION_NEW.gold())
-                1 -> add(LangKeys.RBMK_PELLET_DEPLETION_SLIGHT.yellow())
-                2 -> add(LangKeys.RBMK_PELLET_DEPLETION_MODERATE.green())
-                3 -> add(LangKeys.RBMK_PELLET_DEPLETION_HIGH.darkGreen())
-                4 -> add(LangKeys.RBMK_PELLET_DEPLETION_FULL.darkGray())
+                0 -> add(LangKeys.RBMK_PELLET_DEPLETION_NEW.get().gold())
+                1 -> add(LangKeys.RBMK_PELLET_DEPLETION_SLIGHT.get().yellow())
+                2 -> add(LangKeys.RBMK_PELLET_DEPLETION_MODERATE.get().green())
+                3 -> add(LangKeys.RBMK_PELLET_DEPLETION_HIGH.get().darkGreen())
+                4 -> add(LangKeys.RBMK_PELLET_DEPLETION_FULL.get().darkGray())
                 else -> throw IllegalStateException("Invalid pellet depletion value")
             }
 
             if (hasXenon(stack))
-                add(LangKeys.RBMK_PELLET_XENON_POISONED.darkPurple())
+                add(LangKeys.RBMK_PELLET_XENON_POISONED.get().darkPurple())
         }
     }
 }

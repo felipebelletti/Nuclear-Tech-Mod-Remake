@@ -33,7 +33,7 @@ class RadiationHazard : HazardType {
         if (radiation < 1E-5) return
 
         with(tooltip) {
-            add(LangKeys.HAZARD_RADIATON.green())
+            add(LangKeys.HAZARD_RADIATON.get().green())
             add(Component.literal("${floor(radiation * itemStack.count * 1000F) / 1000F} RAD/s").yellow())
         }
     }

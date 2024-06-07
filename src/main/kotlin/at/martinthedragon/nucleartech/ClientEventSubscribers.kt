@@ -63,7 +63,7 @@ object ClientEventSubscribers {
         if (!didVersionCheck && entity === Minecraft.getInstance().player) {
             val message = createVersionUpdateChatMessage()
             message?.let {
-                entity.displayClientMessage(LangKeys.VERSION_CHECKER_ANNOUNCEMENT.gold(), false)
+                entity.displayClientMessage(LangKeys.VERSION_CHECKER_ANNOUNCEMENT.get().gold(), false)
                 entity.displayClientMessage(it, false)
             }
             didVersionCheck = true
@@ -77,18 +77,18 @@ object ClientEventSubscribers {
         return when (versionCheckResult.status) {
             VersionChecker.Status.PENDING, VersionChecker.Status.FAILED, VersionChecker.Status.UP_TO_DATE, null -> null
             VersionChecker.Status.BETA, VersionChecker.Status.AHEAD -> {
-                val cuttingEdgeMessage = if (NuclearTech.isSnapshot) LangKeys.VERSION_CHECKER_BLEEDING_EDGE.red() else LangKeys.VERSION_CHECKER_CUTTING_EDGE.gold()
+                val cuttingEdgeMessage = if (NuclearTech.isSnapshot) LangKeys.VERSION_CHECKER_BLEEDING_EDGE.get().red() else LangKeys.VERSION_CHECKER_CUTTING_EDGE.get().gold()
                 cuttingEdgeMessage.append(Component.literal(" ($currentVersion)").white())
             }
             VersionChecker.Status.OUTDATED, VersionChecker.Status.BETA_OUTDATED -> {
-                LangKeys.VERSION_CHECKER_UPDATE.yellow()
+                LangKeys.VERSION_CHECKER_UPDATE.get().yellow()
                     .append(Component.literal(" ($currentVersion -> ").white())
                     .append(Component.literal("${versionCheckResult.target}").blue().underline().withStyle(Style.EMPTY
-                        .withHoverEvent(HoverEvent(HoverEvent.Action.SHOW_TEXT, LangKeys.VERSION_CHECKER_VIEW_RELEASES.gray()))
+                        .withHoverEvent(HoverEvent(HoverEvent.Action.SHOW_TEXT, LangKeys.VERSION_CHECKER_VIEW_RELEASES.get().gray()))
                         .withClickEvent(ClickEvent(ClickEvent.Action.OPEN_URL, versionCheckResult.url))))
                     .append(Component.literal(")").white())
                     .append("\n")
-                    .run { if (versionCheckResult.changes.isNotEmpty()) append(LangKeys.VERSION_CHECKER_CHANGES_LIST.yellow()) else this }
+                    .run { if (versionCheckResult.changes.isNotEmpty()) append(LangKeys.VERSION_CHECKER_CHANGES_LIST.get().yellow()) else this }
                     .run { var next = this; for (change in versionCheckResult.changes.values.flatMap { it.split("\r\n", "\n", "\r") }) next = next.append(Component.literal('\n' + change.prependIndent()).white()); next }
             }
         }

@@ -54,12 +54,12 @@ class VolcanoBlock(properties: Properties) : BaseEntityBlock(properties) {
 
     override fun appendHoverText(itemStack: ItemStack, level: BlockGetter?, tooltip: MutableList<Component>, flag: TooltipFlag) {
         if (itemStack.tag?.getBoolean("Smoldering") == true) {
-            tooltip += LangKeys.VOLCANO_SMOLDERING.gold()
+            tooltip += LangKeys.VOLCANO_SMOLDERING.get().gold()
             return
         }
 
-        tooltip += if (itemStack.tag?.getBoolean("Grows") == true) LangKeys.VOLCANO_GROWING.red() else LangKeys.VOLCANO_NOT_GROWING.darkGray()
-        tooltip += if (itemStack.tag?.getBoolean("Extinguishes") == true) LangKeys.VOLCANO_EXTINGUISHING.red() else LangKeys.VOLCANO_NOT_EXTINGUISHING.darkGray()
+        tooltip += if (itemStack.tag?.getBoolean("Grows") == true) LangKeys.VOLCANO_GROWING.get().red() else LangKeys.VOLCANO_NOT_GROWING.get().darkGray()
+        tooltip += if (itemStack.tag?.getBoolean("Extinguishes") == true) LangKeys.VOLCANO_EXTINGUISHING.get().red() else LangKeys.VOLCANO_NOT_EXTINGUISHING.get().darkGray()
     }
 
     override fun newBlockEntity(pos: BlockPos, state: BlockState) = VolcanoBlockEntity(pos, state)

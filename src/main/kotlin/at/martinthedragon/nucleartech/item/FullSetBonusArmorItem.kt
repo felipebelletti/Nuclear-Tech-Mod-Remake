@@ -47,17 +47,17 @@ open class FullSetBonusArmorItem(material: ArmorMaterial, slot: EquipmentSlot, v
                 if (damageCap != -1F) add(LangKeys.ARMOR_DAMAGE_CAP.format(bonus.damageCap).yellow().prependIntent())
                 if (damageMod != 1F) add(LangKeys.ARMOR_DAMAGE_MODIFIER.format(bonus.damageMod).yellow().prependIntent())
                 if (damageThreshold > 0) add(LangKeys.ARMOR_DAMAGE_THRESHOLD.format(bonus.damageThreshold).yellow().prependIntent())
-                if (fireproof) add(LangKeys.ARMOR_FIREPROOF.red().prependIntent())
-                if (geigerSound) add(LangKeys.ARMOR_GEIGER_SOUND.gold().prependIntent())
-                if (customGeiger) add(LangKeys.ARMOR_CUSTOM_GEIGER.gold().prependIntent())
-                if (vats) add(LangKeys.ARMOR_VATS.red().prependIntent())
-                if (thermal) add(LangKeys.ARMOR_THERMAL.red().prependIntent())
-                if (hardLanding) add(LangKeys.ARMOR_HARD_LANDING.red().prependIntent())
+                if (fireproof) add(LangKeys.ARMOR_FIREPROOF.get().red().prependIntent())
+                if (geigerSound) add(LangKeys.ARMOR_GEIGER_SOUND.get().gold().prependIntent())
+                if (customGeiger) add(LangKeys.ARMOR_CUSTOM_GEIGER.get().gold().prependIntent())
+                if (vats) add(LangKeys.ARMOR_VATS.get().red().prependIntent())
+                if (thermal) add(LangKeys.ARMOR_THERMAL.get().red().prependIntent())
+                if (hardLanding) add(LangKeys.ARMOR_HARD_LANDING.get().red().prependIntent())
                 if (gravity != 0.0) add(LangKeys.ARMOR_GRAVITY.format(gravity).blue().prependIntent())
                 if (dashCount > 0) add(LangKeys.ARMOR_DASH_COUNT.format(dashCount).aqua().prependIntent())
                 if (protectionYield != 100F) add(LangKeys.ARMOR_PROTECTION_YIELD.format(protectionYield).blue().prependIntent())
             }
-            if (tooltip.size > originalCount) add(originalCount, LangKeys.ARMOR_FULL_SET_BONUS.gold())
+            if (tooltip.size > originalCount) add(originalCount, LangKeys.ARMOR_FULL_SET_BONUS.get().gold())
         }
     }
 

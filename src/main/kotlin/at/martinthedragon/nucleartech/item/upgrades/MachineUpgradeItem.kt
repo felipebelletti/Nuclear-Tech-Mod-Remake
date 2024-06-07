@@ -59,26 +59,26 @@ class MachineUpgradeItem(properties: Properties, val effect: UpgradeEffect<Upgra
         val screen = Minecraft.getInstance().screen
 
         if (screen is InventoryScreen || screen is CreativeModeInventoryScreen) {
-            tooltip += LangKeys.UPGRADE_WARN_VIEW_MACHINE.yellow()
+            tooltip += LangKeys.UPGRADE_WARN_VIEW_MACHINE.get().yellow()
             return
         }
 
         if (screen !is AbstractContainerScreen<*>) {
-            tooltip += LangKeys.UPGRADE_WARN_NOT_A_MACHINE.red()
+            tooltip += LangKeys.UPGRADE_WARN_NOT_A_MACHINE.get().red()
             return
         }
 
         val menu = screen.menu
 
         if (menu !is NTechContainerMenu<*>) {
-            tooltip += LangKeys.UPGRADE_WARN_UNKNOWN_COMPATIBILITY.darkGray()
+            tooltip += LangKeys.UPGRADE_WARN_UNKNOWN_COMPATIBILITY.get().darkGray()
             return
         }
 
         val blockEntity = menu.blockEntity
 
         if (blockEntity !is UpgradeableMachine) {
-            tooltip += LangKeys.UPGRADE_WARN_MACHINE_NOT_UPGRADEABLE.red()
+            tooltip += LangKeys.UPGRADE_WARN_MACHINE_NOT_UPGRADEABLE.get().red()
             return
         }
 
@@ -89,7 +89,7 @@ class MachineUpgradeItem(properties: Properties, val effect: UpgradeEffect<Upgra
             }
             tooltip += blockEntity.getUpgradeInfoForEffect(effect).map(MutableComponent::gray)
         } else {
-            tooltip += LangKeys.UPGRADE_WARN_INCOMPATIBLE.red()
+            tooltip += LangKeys.UPGRADE_WARN_INCOMPATIBLE.get().red()
         }
     }
 

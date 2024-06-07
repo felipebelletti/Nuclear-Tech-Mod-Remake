@@ -31,7 +31,7 @@ class RBMKLinkerItem(properties: Properties) : AutoTooltippedItem(properties) {
 
         if (block is RBMKPart) {
             setTarget(item.orCreateTag, block.getTopBlockPos(level, clickedPos, blockState))
-            if (level.isClientSide) player.displayClientMessage(LangKeys.DEVICE_POSITION_SET.yellow(), true)
+            if (level.isClientSide) player.displayClientMessage(LangKeys.DEVICE_POSITION_SET.get().yellow(), true)
             return InteractionResult.sidedSuccess(level.isClientSide)
         } else {
             val consolePos = when (block) {
@@ -46,18 +46,18 @@ class RBMKLinkerItem(properties: Properties) : AutoTooltippedItem(properties) {
             if (tags != null && hasTags(tags)) {
                 val targetPos = getTarget(tags)
                 if (!level.isLoaded(targetPos)) {
-                    if (level.isClientSide) player.displayClientMessage(LangKeys.DEVICE_POSITION_NOT_LOADED.red(), true)
+                    if (level.isClientSide) player.displayClientMessage(LangKeys.DEVICE_POSITION_NOT_LOADED.get().red(), true)
                     return InteractionResult.FAIL
                 }
 
                 val console = level.getBlockEntity(consolePos) as? RBMKConsoleBlockEntity ?: return InteractionResult.FAIL
                 console.scanTarget = targetPos
 
-                if (level.isClientSide) player.displayClientMessage(LangKeys.RBMK_CONSOLE_LINK.green(), true)
+                if (level.isClientSide) player.displayClientMessage(LangKeys.RBMK_CONSOLE_LINK.get().green(), true)
                 return InteractionResult.sidedSuccess(level.isClientSide)
             }
 
-            if (level.isClientSide) player.displayClientMessage(LangKeys.DEVICE_POSITION_NOT_SET.red(), true)
+            if (level.isClientSide) player.displayClientMessage(LangKeys.DEVICE_POSITION_NOT_SET.get().red(), true)
             return InteractionResult.FAIL
         }
     }
@@ -74,7 +74,7 @@ class RBMKLinkerItem(properties: Properties) : AutoTooltippedItem(properties) {
         super.appendHoverText(stack, level, tooltip, flag)
 
         tooltip += if (!stack.hasTag() || !hasTags(stack.tag!!))
-            LangKeys.DEVICE_POSITION_NOT_SET.darkRed()
+            LangKeys.DEVICE_POSITION_NOT_SET.get().darkRed()
         else {
             val (x, y, z) = getTarget(stack.tag!!)
             LangKeys.INFO_POSITION.format(x, y, z).gray()

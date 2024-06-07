@@ -173,6 +173,6 @@ class UseCreativeNuclearExplosionSpawnerScreen : Screen(NTechItems.creativeNucle
         private val START_LABEL = LangKeys.BUTTON_START.get()
         private val ERR_STRENGTH = LangKeys.EXPLOSION_SPAWNER_ERROR_STRENGTH.get()
         private val ERR_EXTRA_FALLOUT = LangKeys.EXPLOSION_SPAWNER_ERROR_EXTRA_FALLOUT.get()
-        val ERR_INSUFFICIENT_PERMISSION: Component = LangKeys.EXPLOSION_SPAWNER_NO_PERMISSION.red()
+        val ERR_INSUFFICIENT_PERMISSION: Component = LangKeys.EXPLOSION_SPAWNER_NO_PERMISSION.get().red()
     }
 }

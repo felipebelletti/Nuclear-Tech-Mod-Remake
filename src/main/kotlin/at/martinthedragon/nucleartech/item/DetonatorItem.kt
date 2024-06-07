@@ -37,7 +37,7 @@ class DetonatorItem(properties: Properties) : Item(properties) {
                 detonatorTag.putInt("ExplosivePosZ", pos.z)
             }
             player.playSound(SoundEvents.randomBoop.get(), 2F, 1F)
-            if (world.isClientSide) player.displayClientMessage(LangKeys.DEVICE_POSITION_SET.green(), true)
+            if (world.isClientSide) player.displayClientMessage(LangKeys.DEVICE_POSITION_SET.get().green(), true)
             return InteractionResult.sidedSuccess(world.isClientSide)
         }
 
@@ -53,7 +53,7 @@ class DetonatorItem(properties: Properties) : Item(properties) {
 
     private fun processUse(stack: ItemStack, world: Level, player: Player) {
         if (!isPositionSet(stack)) {
-            player.displayClientMessage(LangKeys.DEVICE_POSITION_NOT_SET.red(), true)
+            player.displayClientMessage(LangKeys.DEVICE_POSITION_NOT_SET.get().red(), true)
             return
         }
         val detonatorTag = stack.orCreateTag
@@ -62,21 +62,21 @@ class DetonatorItem(properties: Properties) : Item(properties) {
         val posZ = detonatorTag.getInt("ExplosivePosZ")
         val pos = BlockPos(posX, posY, posZ)
         if (!NuclearConfig.explosions.detonateUnloadedBombs.get() && !world.isLoaded(pos)) {
-            player.displayClientMessage(LangKeys.DEVICE_POSITION_NOT_LOADED.red(), true)
+            player.displayClientMessage(LangKeys.DEVICE_POSITION_NOT_LOADED.get().red(), true)
             return
         }
         val block = world.getBlockState(pos).block
         if (block !is IgnitableExplosive) {
-            player.displayClientMessage(LangKeys.DETONATOR_NO_EXPLOSIVE.red(), true)
+            player.displayClientMessage(LangKeys.DETONATOR_NO_EXPLOSIVE.get().red(), true)
             return
         }
         val messageToSend = when (block.detonate(world, pos)) {
-            IgnitableExplosive.DetonationResult.Success -> LangKeys.DETONATOR_SUCCESS.green()
-            IgnitableExplosive.DetonationResult.InvalidPosition -> LangKeys.DETONATOR_NO_EXPLOSIVE.red()
-            IgnitableExplosive.DetonationResult.InvalidBlockEntity -> LangKeys.DETONATOR_INVALID_BLOCK_ENTITY.red()
-            IgnitableExplosive.DetonationResult.Incomplete -> LangKeys.DETONATOR_MISSING_COMPONENTS.red()
-            IgnitableExplosive.DetonationResult.Prohibited -> LangKeys.DETONATOR_PROHIBITED.red()
-            IgnitableExplosive.DetonationResult.Unknown -> LangKeys.DETONATOR_UNKNOWN_ERROR.red()
+            IgnitableExplosive.DetonationResult.Success -> LangKeys.DETONATOR_SUCCESS.get().green()
+            IgnitableExplosive.DetonationResult.InvalidPosition -> LangKeys.DETONATOR_NO_EXPLOSIVE.get().red()
+            IgnitableExplosive.DetonationResult.InvalidBlockEntity -> LangKeys.DETONATOR_INVALID_BLOCK_ENTITY.get().red()
+            IgnitableExplosive.DetonationResult.Incomplete -> LangKeys.DETONATOR_MISSING_COMPONENTS.get().red()
+            IgnitableExplosive.DetonationResult.Prohibited -> LangKeys.DETONATOR_PROHIBITED.get().red()
+            IgnitableExplosive.DetonationResult.Unknown -> LangKeys.DETONATOR_UNKNOWN_ERROR.get().red()
         }
         player.displayClientMessage(messageToSend, true)
     }
@@ -91,6 +91,6 @@ class DetonatorItem(properties: Properties) : Item(properties) {
             val y = tag.getInt("ExplosivePosY")
             val z = tag.getInt("ExplosivePosZ")
             Component.literal("$x, $y, $z").gray()
-        } else LangKeys.DEVICE_POSITION_NOT_SET.darkRed()
+        } else LangKeys.DEVICE_POSITION_NOT_SET.get().darkRed()
     }
 }

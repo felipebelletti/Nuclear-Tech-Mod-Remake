@@ -6,7 +6,7 @@ import at.martinthedragon.nucleartech.block.entity.UpgradeableMachine
 import at.martinthedragon.nucleartech.extensions.darkRed
 
 class SpeedUpgrade(override val tier: Int) : MachineUpgradeItem.UpgradeEffect<SpeedUpgradeableMachine> {
-    override fun getName() = LangKeys.UPGRADE_NAME_SPEED.darkRed()
+    override fun getName() = LangKeys.UPGRADE_NAME_SPEED.get().darkRed()
 
     override fun isCompatibleWith(machine: UpgradeableMachine) = machine is SpeedUpgradeableMachine
 

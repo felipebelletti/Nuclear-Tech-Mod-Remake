@@ -142,7 +142,7 @@ class RBMKRodItem(
             // TODO digamma rod
 
             if (selfRate > 0 || burnFunc == BurnFunction.SIGMOID) {
-                add(LangKeys.RBMK_ROD_SOURCE.red())
+                add(LangKeys.RBMK_ROD_SOURCE.get().red())
             }
 
             add(LangKeys.RBMK_ROD_DEPLETION.format((((yield - getYield(stack)) / yield) * 100_000.0).toInt() / 1000.0).green())
@@ -162,15 +162,15 @@ class RBMKRodItem(
     }
 
     enum class BurnFunction(val displayName: Component) {
-        PASSIVE(LangKeys.RBMK_BURN_PASSIVE.darkGreen()),
-        LOGARITHMIC(LangKeys.RBMK_BURN_LOGARITHMIC.yellow()),
-        PLATEAU(LangKeys.RBMK_BURN_EULER.green()),
-        ARCH(LangKeys.RBMK_BURN_NEGATIVE_QUADRATIC.red()),
-        SIGMOID(LangKeys.RBMK_BURN_SIGMOID.green()),
-        SQUARE_ROOT(LangKeys.RBMK_BURN_SQUARE_ROOT.yellow()),
-        LINEAR(LangKeys.RBMK_BURN_LINEAR.red()),
-        QUADRATIC(LangKeys.RBMK_BURN_QUADRATIC.red()),
-        EXPERIMENTAL(LangKeys.RBMK_BURN_SINE_SLOPE.red()),
+        PASSIVE(LangKeys.RBMK_BURN_PASSIVE.get().darkGreen()),
+        LOGARITHMIC(LangKeys.RBMK_BURN_LOGARITHMIC.get().yellow()),
+        PLATEAU(LangKeys.RBMK_BURN_EULER.get().green()),
+        ARCH(LangKeys.RBMK_BURN_NEGATIVE_QUADRATIC.get().red()),
+        SIGMOID(LangKeys.RBMK_BURN_SIGMOID.get().green()),
+        SQUARE_ROOT(LangKeys.RBMK_BURN_SQUARE_ROOT.get().yellow()),
+        LINEAR(LangKeys.RBMK_BURN_LINEAR.get().red()),
+        QUADRATIC(LangKeys.RBMK_BURN_QUADRATIC.get().red()),
+        EXPERIMENTAL(LangKeys.RBMK_BURN_SINE_SLOPE.get().red()),
     }
 
     enum class DepleteFunction {

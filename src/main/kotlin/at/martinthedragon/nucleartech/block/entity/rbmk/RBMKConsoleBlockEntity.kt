@@ -222,7 +222,7 @@ class RBMKConsoleBlockEntity(pos: BlockPos, state: BlockState) : BaseMachineBloc
             }
 
             if (data.getBoolean("Moderated"))
-                add(LangKeys.RBMK_MODERATED.yellow())
+                add(LangKeys.RBMK_MODERATED.get().yellow())
         }
 
         enum class Type { BLANK, FUEL, CONTROL, CONTROL_AUTO, BOILER, MODERATOR, ABSORBER, REFLECTOR, OUTGASSER, FUEL_REASIM, BREEDER, STORAGE, COOLER, HEATEX }

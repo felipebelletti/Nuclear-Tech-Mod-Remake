@@ -53,7 +53,7 @@ class ConstructingJRC(guiHelper: IGuiHelper) : IRecipeCategory<AnvilConstructing
                     val chances = recipe.getTooltipChancesForOutputAt(y * 4 + x)
                     if (chances.isEmpty()) return@addTooltipCallback
                     if (tooltip.isNotEmpty()) tooltip.add(Component.literal.EMPTY)
-                    tooltip.add(LangKeys.JEI_OUTPUT_CHANCE.gold())
+                    tooltip.add(LangKeys.JEI_OUTPUT_CHANCE.get().gold())
                     tooltip.addAll(chances)
                 }
             }

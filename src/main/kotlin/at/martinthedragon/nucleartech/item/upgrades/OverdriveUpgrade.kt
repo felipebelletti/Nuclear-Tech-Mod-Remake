@@ -6,7 +6,7 @@ import at.martinthedragon.nucleartech.block.entity.UpgradeableMachine
 import at.martinthedragon.nucleartech.extensions.darkGray
 
 class OverdriveUpgrade(override val tier: Int) : MachineUpgradeItem.UpgradeEffect<OverdriveUpgradeableMachine> {
-    override fun getName() = LangKeys.UPGRADE_NAME_OVERDRIVE.darkGray()
+    override fun getName() = LangKeys.UPGRADE_NAME_OVERDRIVE.get().darkGray()
 
     override fun isCompatibleWith(machine: UpgradeableMachine) = machine is OverdriveUpgradeableMachine
 

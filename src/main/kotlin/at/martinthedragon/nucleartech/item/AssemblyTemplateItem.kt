@@ -44,11 +44,11 @@ class AssemblyTemplateItem(properties: Properties) : Item(properties) {
         val resultItem = recipe.resultItem
 
         with(tooltips) {
-            add(LangKeys.INFO_OUTPUT.bold().gray())
+            add(LangKeys.INFO_OUTPUT.get().bold().gray())
             add(Component.literal("${resultItem.count}x ".prependIndent("  ")).append(resultItem.hoverName).gray())
-            add(LangKeys.INFO_INPUTS.bold().gray())
+            add(LangKeys.INFO_INPUTS.get().bold().gray())
             for (input in recipe.ingredientsList) add(Component.literal("${input.requiredAmount}x ".prependIndent("  ")).append(input.items.first().hoverName).gray())
-            add(LangKeys.INFO_PRODUCTION_TIME.bold().gray())
+            add(LangKeys.INFO_PRODUCTION_TIME.get().bold().gray())
             add(Component.literal("${floor(recipe.duration / 20F * 100F) / 100F} ".prependIndent("  ")).append(LangKeys.WORD_SECONDS.get()).gray())
         }
 

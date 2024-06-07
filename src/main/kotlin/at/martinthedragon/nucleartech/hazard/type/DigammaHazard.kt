@@ -28,7 +28,7 @@ class DigammaHazard : HazardType {
         val digamma = modifiers.evaluateAllModifiers(itemStack, player, level)
 
         with(tooltip) {
-            add(LangKeys.HAZARD_DIGAMMA.red())
+            add(LangKeys.HAZARD_DIGAMMA.get().red())
             add(Component.literal("${floor(digamma * itemStack.count * 10_000F) / 10F} mDRX/s"))
         }
     }

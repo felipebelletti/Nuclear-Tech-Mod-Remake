@@ -14,7 +14,7 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParams
 
 class VolcanicGemOreBlock(properties: Properties) : RotatedPillarBlock(properties) {
     override fun appendHoverText(stack: ItemStack, level: BlockGetter?, tooltip: MutableList<Component>, flag: TooltipFlag) {
-        tooltip += LangKeys.INFO_ORE_CLUSTER.yellow()
+        tooltip += LangKeys.INFO_ORE_CLUSTER.get().yellow()
     }
 
     override fun getDrops(state: BlockState, context: LootContext.Builder): List<ItemStack> =

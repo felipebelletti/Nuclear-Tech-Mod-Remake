@@ -34,7 +34,7 @@ class DesignatorItem(properties: Properties) : Item(properties), TargetDesignato
             putInt("TargetX", x)
             putInt("TargetY", y)
             putInt("TargetZ", z)
-        } else player?.displayClientMessage(LangKeys.DEVICE_POSITION_SET.green(), true)
+        } else player?.displayClientMessage(LangKeys.DEVICE_POSITION_SET.get().green(), true)
         player?.playSound(SoundEvents.randomBleep.get(), 1F, 1F)
 
         return InteractionResult.sidedSuccess(level.isClientSide)
@@ -47,7 +47,7 @@ class DesignatorItem(properties: Properties) : Item(properties), TargetDesignato
     private fun getTarget(tag: CompoundTag) = BlockPos(tag.getInt("TargetX"), tag.getInt("TargetY"), tag.getInt("TargetZ"))
 
     override fun appendHoverText(stack: ItemStack, level: Level?, tooltip: MutableList<Component>, flag: TooltipFlag) {
-        tooltip += if (!stack.hasTag() || !hasTags(stack.tag!!)) LangKeys.DEVICE_POSITION_NOT_SET.darkRed()
+        tooltip += if (!stack.hasTag() || !hasTags(stack.tag!!)) LangKeys.DEVICE_POSITION_NOT_SET.get().darkRed()
         else {
             val (x, y, z) = getTarget(stack.tag!!)
             LangKeys.INFO_POSITION.format(x, y, z).gray()

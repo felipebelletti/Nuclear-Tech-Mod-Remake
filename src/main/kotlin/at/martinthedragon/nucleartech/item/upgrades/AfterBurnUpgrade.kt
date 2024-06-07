@@ -6,7 +6,7 @@ import at.martinthedragon.nucleartech.block.entity.UpgradeableMachine
 import at.martinthedragon.nucleartech.extensions.lightPurple
 
 class AfterBurnUpgrade(override val tier: Int) : MachineUpgradeItem.UpgradeEffect<AfterBurnUpgradeableMachine> {
-    override fun getName() = LangKeys.UPGRADE_NAME_AFTER_BURNER.lightPurple()
+    override fun getName() = LangKeys.UPGRADE_NAME_AFTER_BURNER.get().lightPurple()
 
     override fun isCompatibleWith(machine: UpgradeableMachine) = machine is AfterBurnUpgradeableMachine
 

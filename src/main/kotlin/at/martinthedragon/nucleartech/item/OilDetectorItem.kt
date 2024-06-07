@@ -43,7 +43,7 @@ class OilDetectorItem(properties: Properties) : Item(properties) {
         if (level.isClientSide) {
             val playerPosition = player.blockPosition()
             if (checkColumns(level, playerPosition, 0, 0)) {
-                player.displayClientMessage(LangKeys.DEVICE_OIL_DETECTOR_BELOW.darkGreen(), true)
+                player.displayClientMessage(LangKeys.DEVICE_OIL_DETECTOR_BELOW.get().darkGreen(), true)
             } else if (
                 checkColumns(level, playerPosition, 5, 0) ||
                 checkColumns(level, playerPosition, 0, 5) ||
@@ -51,9 +51,9 @@ class OilDetectorItem(properties: Properties) : Item(properties) {
                 checkColumns(level, playerPosition, 0, 10) ||
                 checkColumns(level, playerPosition, 5, 5)
             ) {
-                player.displayClientMessage(LangKeys.DEVICE_OIL_DETECTOR_NEAR.gold(), true)
+                player.displayClientMessage(LangKeys.DEVICE_OIL_DETECTOR_NEAR.get().gold(), true)
             } else {
-                player.displayClientMessage(LangKeys.DEVICE_OIL_DETECTOR_NO_OIL.red(), true)
+                player.displayClientMessage(LangKeys.DEVICE_OIL_DETECTOR_NO_OIL.get().red(), true)
             }
         }
 

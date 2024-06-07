@@ -32,6 +32,6 @@ class ExplosiveHazard : HazardType {
     }
 
     override fun appendHoverText(itemStack: ItemStack, level: Float, modifiers: List<HazardModifier>, player: Player?, tooltip: MutableList<Component>, flag: TooltipFlag) {
-        tooltip += LangKeys.HAZARD_EXPLOSIVE.red()
+        tooltip += LangKeys.HAZARD_EXPLOSIVE.get().red()
     }
 }

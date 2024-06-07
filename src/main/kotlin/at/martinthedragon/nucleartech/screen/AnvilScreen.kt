@@ -273,11 +273,11 @@ class AnvilScreen(anvilMenu: AnvilMenu, playerInventory: Inventory, title: Compo
         val selectedRecipe = getSelectedRecipe() ?: return emptyList()
         val (available, missing) = partitionIngredients(selectedRecipe.ingredientsList)
         return buildList {
-            add(LangKeys.INFO_INPUTS.yellow())
+            add(LangKeys.INFO_INPUTS.get().yellow())
             addAll(missing.map { Component.literal("> ").append(it.red()).red() })
             addAll(available.map { Component.literal("> ").append(it.green()).green() })
             add(Component.literal.EMPTY)
-            add(LangKeys.INFO_OUTPUTS.yellow())
+            add(LangKeys.INFO_OUTPUTS.get().yellow())
             addAll(selectedRecipe.results.map { Component.literal("> ${it.stack.count}x ").append(it.stack.hoverName).apply { if (it.chance != 1F) append(" (${it.chance * 100}%)") }})
         }
     }
